@@ -6,12 +6,24 @@
 //
 
 import SwiftUI
+import FirebaseCore
 
 @main
 struct realestateappApp: App {
+    
+    @StateObject var authModel: AuthViewModel = AuthViewModel()
+    
+    init(){
+        FirebaseApp.configure()
+    }
+    
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            NavigationView {
+                ContentView()
+            }
+            .environmentObject(authModel)
+            .accentColor(.red)
         }
     }
 }
