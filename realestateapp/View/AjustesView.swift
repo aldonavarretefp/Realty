@@ -6,95 +6,136 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 struct AjustesView: View {
     
-    @State private var isOn:Bool = false
-    @State private var inputOn: Bool = false
-    
     @EnvironmentObject var authModel: AuthViewModel
+    
+    @State private var isOn:Bool = false
+    @State private var showingAlert: Bool = false
+    @State private var showImagePicker: Bool = false
+    @State private var selectedImage: UIImage?
+    @State private var profileImage: Image?
+    @State private var textFieldName: String = ""
+    
+    @State private var user: LandLordUser? = nil
     
     var body: some View {
         NavigationView {
-            List{
-                HStack{
-                    Text("Nombre")
-                        .font(.title)
-                        .fontWeight(.bold)
-                    Spacer()
-                    Image(systemName: "person.fill")
-                        .resizable()
-                        .frame(width: 50,height: 50)
-                        .padding(20)
-                        .clipShape(Circle())
-                        .background(Color(.systemGray5))
-                        .foregroundColor(.white)
-                        .cornerRadius(50)
-                }
-                Section("Perfil"){
-                    Button("Cambiar Nombre") {
-                        inputOn.toggle()
+            if let user = authModel.currentLandlord {
+                List{
+                    HStack{
+                        Text(user.name)
+                            .font(.title)
+                            .padding(.horizontal, 10)
+                        Spacer()
+                        Button {
+                            showImagePicker.toggle()
+                        } label: {
+                            if let profileImageUrl = authModel.currentLandlord?.profileImageUrl {
+                                KFImage(URL(string: profileImageUrl))
+                                    .resizable()
+                                    .scaledToFill()
+                                    .modifier(ProfileImageModifier())
+                            } else {
+                                Image(systemName: "person.fill")
+                                    .renderingMode(.template)
+                                    .font(.largeTitle)
+                                    .modifier(ProfileImageModifier())
                             }
-                            .alert("Nombre", isPresented: $inputOn, actions: {
-                                TextField("e.g. Roberto Martinez", text: .constant(""))
-                                Button("Confirmar", action: {})
-                                           Button("Cancel", role: .cancel, action: {})
-                            }, message: {
-                                // Any view other than Text would be ignored
-                                TextField("TextField", text: .constant("Inserte un nombre"))
+                        }
+                        .sheet(isPresented: $showImagePicker, onDismiss: loadImage) {
+                            ImagePicker(selectedImage: $selectedImage)
+                        }
+                    }
+                    Section("Perfil"){
+                        Button("Cambiar Nombre") {
+                            withAnimation {
+                                self.showingAlert.toggle()
                             }
-                            )
-                    Text("Otro ajuste")
-                    Text("Otro ajuste")
-                    Text("Otro ajuste")
-                    
-                }
-                Section("Propiedades"){
-                    Toggle("Modo obscuro", isOn: $isOn)
-                    Text("Otro ajuste")
-                    
-                }
-                Section("Guéspedes"){
-                    Toggle("Modo obscuro", isOn: $isOn)
-                    Text("Otro ajuste")
-                    
-                }
-                Section("Apariencia"){
-                    Toggle("Modo obscuro", isOn: $isOn)
-                    Text("Otro ajuste")
-                    
-                }
-                
-                Button(role: .destructive, action: {}, label: {
-                    Label("Borrar Cuenta", systemImage: "trash")
-                }).foregroundColor(.red)
-            }
-            .navigationTitle("Ajustes")
-            .toolbar{
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    Menu {
-                        Button(action: {
-                            authModel.logOut()
-                        }, label: {
-                            Label("Salir", systemImage: "rectangle.portrait.and.arrow.right")
-                        }).foregroundColor(Color(.systemBlue))
+                        }
+                        .alert("Nombre", isPresented: $showingAlert, actions: {
+                            TextField("e.g. Roberto Martinez", text: $textFieldName)
+                            Button("Confirmar") {
+                                loadName()
+                            }
+                            Button("Cancel", role: .cancel) {
+                                
+                            }
+                        }, message: {
+                            // Any view other than Text would be ignored
+                            TextField("TextField", text: .constant("Inserte un nombre"))
+                        })
+                        .foregroundColor(Color(UIColor.black))
+                    }
+                    Section("Apariencia"){
+                        Toggle("Modo obscuro", isOn: $isOn)
+                    }
+                    Button {
                         
                     } label: {
-                        Image(systemName: "ellipsis")
-                            .rotationEffect(.init(degrees: 90))
-                            .scaleEffect(0.8)
-                            .tint(.accentColor)
+                        Label("Borrar Cuenta", systemImage: "trash")
                     }
-                    
+                }
+                .navigationTitle("Ajustes")
+                .toolbar{
+                    ToolbarItem(placement: .navigationBarTrailing) {
+                        Menu {
+                            Button(action: {
+                                authModel.logOut()
+                            }, label: {
+                                Label("Salir", systemImage: "rectangle.portrait.and.arrow.right")
+                            }).foregroundColor(Color(.systemBlue))
+                        } label: {
+                            Image(systemName: "ellipsis")
+                                .rotationEffect(.init(degrees: 90))
+                                .scaleEffect(0.8)
+                                .tint(.accentColor)
+                        }
+                    }
                 }
             }
-            
+            else {
+                VStack {
+                    Text("Oh no, it seems that the user could not be fetched, if you think that's an error please contact the developer.")   
+                }
+            }
         }
+        .accentColor(.black)
+        .navigationViewStyle(StackNavigationViewStyle())
+    }
+    
+    //MARK: - loading
+    
+    func loadName() -> Void {
+        guard textFieldName != "" else { return }
+        authModel.updateName(with: textFieldName)
+    }
+    
+    func loadImage() {
+        guard let selectedImage = selectedImage else {
+            print("DEBUG error selectedImage is nil")
+            return
+        }
+        profileImage = Image(uiImage: selectedImage)
+        authModel.uploadProfileImage(selectedImage)
+    }
+}
+
+private struct ProfileImageModifier: ViewModifier {
+    func body(content: Content) -> some View {
+        content
+            .frame(width: 80,height: 80)
+            .foregroundColor(.white)
+            .background(Color(.systemGray5))
+            .clipShape(Circle())
     }
 }
 
 struct Previews_AjustesView_Previews: PreviewProvider {
     static var previews: some View {
         AjustesView()
+            .environmentObject(AuthViewModel())
     }
 }

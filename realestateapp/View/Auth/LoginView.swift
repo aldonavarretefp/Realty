@@ -38,6 +38,7 @@ struct LoginView: View {
                             .padding(.leading,10)
                             .textInputAutocapitalization(.never)
                             .autocorrectionDisabled(true)
+                            .foregroundColor(.black)
                     }
                     .frame(width: 301, height: 54)
                     .padding(.leading,5)
@@ -50,6 +51,7 @@ struct LoginView: View {
                             .frame(width: 301, height: 54)
                         SecureField("Password", text: $password)
                             .padding(.leading,10)
+                            .foregroundColor(.black)
                             
                     }
                     .frame(width: 301, height: 54)
@@ -95,7 +97,12 @@ struct LoginView: View {
                     
                 }
             }
-        }.frame(width: 334)
+        }
+            .frame(width: 334)
+            .onTapGesture {
+                self.hideKeyboard()
+            }
+        
     }
 }
 

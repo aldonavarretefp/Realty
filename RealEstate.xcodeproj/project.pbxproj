@@ -8,55 +8,83 @@
 
 /* Begin PBXBuildFile section */
 		F712718C296743C2007FDCB2 /* pr-sample-contract.pdf in Resources */ = {isa = PBXBuildFile; fileRef = F712718B296743C1007FDCB2 /* pr-sample-contract.pdf */; };
+		F71B5AB229E4A58200F0C8E3 /* FirebaseFirestoreSwift-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = F71B5AB129E4A58200F0C8E3 /* FirebaseFirestoreSwift-Beta */; };
+		F71B5AB529E4AA7D00F0C8E3 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = F71B5AB429E4AA7D00F0C8E3 /* Kingfisher */; };
 		F72123BA29537D9300F1EE26 /* TransactionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F72123B929537D9300F1EE26 /* TransactionView.swift */; };
-		F72123BC295387BE00F1EE26 /* ContactoExpandidoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F72123BB295387BE00F1EE26 /* ContactoExpandidoView.swift */; };
-		F72123BE29538C8D00F1EE26 /* PropiedadExpandidaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F72123BD29538C8D00F1EE26 /* PropiedadExpandidaView.swift */; };
-		F737B5C429526C6C0064ACCE /* realestateappApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F737B5C329526C6C0064ACCE /* realestateappApp.swift */; };
+		F72123BC295387BE00F1EE26 /* ExpandedTenantView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F72123BB295387BE00F1EE26 /* ExpandedTenantView.swift */; };
+		F72123BE29538C8D00F1EE26 /* PropertyDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F72123BD29538C8D00F1EE26 /* PropertyDetailView.swift */; };
+		F737B5C429526C6C0064ACCE /* realestate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F737B5C329526C6C0064ACCE /* realestate.swift */; };
 		F737B5C629526C6C0064ACCE /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F737B5C529526C6C0064ACCE /* ContentView.swift */; };
 		F737B5C829526C6F0064ACCE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F737B5C729526C6F0064ACCE /* Assets.xcassets */; };
 		F737B5CB29526C6F0064ACCE /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F737B5CA29526C6F0064ACCE /* Preview Assets.xcassets */; };
 		F737B5D229526DEF0064ACCE /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F737B5D129526DEF0064ACCE /* HomeView.swift */; };
-		F737B5D429527A170064ACCE /* CuadroPropiedadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F737B5D329527A170064ACCE /* CuadroPropiedadView.swift */; };
+		F737B5D429527A170064ACCE /* PropertyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F737B5D329527A170064ACCE /* PropertyView.swift */; };
 		F737B5D6295338600064ACCE /* FinanzasView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F737B5D5295338600064ACCE /* FinanzasView.swift */; };
+		F73D187229B6E95100F4D2D4 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = F73D187129B6E95100F4D2D4 /* FirebaseAuth */; };
+		F73D187429B6E95100F4D2D4 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = F73D187329B6E95100F4D2D4 /* FirebaseFirestore */; };
+		F73D187629B6E95100F4D2D4 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = F73D187529B6E95100F4D2D4 /* FirebaseStorage */; };
+		F73D187829B6F20500F4D2D4 /* FetcherService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F73D187729B6F20500F4D2D4 /* FetcherService.swift */; };
 		F74F1768295618B90044F7AF /* AjustesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F74F1767295618B90044F7AF /* AjustesView.swift */; };
-		F74F470F29565E840012CCF5 /* Guest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F74F470E29565E840012CCF5 /* Guest.swift */; };
-		F74F4711295660620012CCF5 /* Owner.swift in Sources */ = {isa = PBXBuildFile; fileRef = F74F4710295660620012CCF5 /* Owner.swift */; };
+		F74F470F29565E840012CCF5 /* Tenant.swift in Sources */ = {isa = PBXBuildFile; fileRef = F74F470E29565E840012CCF5 /* Tenant.swift */; };
+		F74F4711295660620012CCF5 /* LandLordUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = F74F4710295660620012CCF5 /* LandLordUser.swift */; };
 		F74F4713295661750012CCF5 /* Property.swift in Sources */ = {isa = PBXBuildFile; fileRef = F74F4712295661750012CCF5 /* Property.swift */; };
+		F762001329F83A39003FC0B5 /* NewTenantView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F762001229F83A39003FC0B5 /* NewTenantView.swift */; };
+		F762001529F87C0B003FC0B5 /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = F762001429F87C0B003FC0B5 /* Transaction.swift */; };
 		F7769F9D29B3B19500B8518F /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7769F9C29B3B19500B8518F /* AuthViewModel.swift */; };
 		F7769F9F29B3B9C900B8518F /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7769F9E29B3B9C900B8518F /* RegisterView.swift */; };
 		F79BF92D29B036840083AF3C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F79BF92C29B036840083AF3C /* GoogleService-Info.plist */; };
-		F79BF93029B037380083AF3C /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = F79BF92F29B037380083AF3C /* FirebaseAnalytics */; };
-		F79BF93229B037380083AF3C /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = F79BF93129B037380083AF3C /* FirebaseAuth */; };
-		F79BF93429B037380083AF3C /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = F79BF93329B037380083AF3C /* FirebaseFirestore */; };
 		F79BF93829B039550083AF3C /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F79BF93729B039550083AF3C /* LoginView.swift */; };
-		F79BF93A29B039760083AF3C /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F79BF93929B039760083AF3C /* LoginViewModel.swift */; };
+		F7BC115029B682E300C65173 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7BC114F29B682E300C65173 /* ImagePicker.swift */; };
+		F7BC115329B686CB00C65173 /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7BC115229B686CB00C65173 /* View.swift */; };
 		F7D8DAA1295640070096A811 /* ContractView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7D8DAA0295640070096A811 /* ContractView.swift */; };
+		F7D983C029BA836300C334FC /* SelectProfilePhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7D983BF29BA836300C334FC /* SelectProfilePhotoView.swift */; };
+		F7DB242129B6E610009040C1 /* ImageUploader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7DB242029B6E610009040C1 /* ImageUploader.swift */; };
+		F7E2AAB029E5CBD0006FD55F /* LaunchScreenStateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7E2AAAF29E5CBD0006FD55F /* LaunchScreenStateManager.swift */; };
+		F7E2AAB229E5CC98006FD55F /* LaunchScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7E2AAB129E5CC98006FD55F /* LaunchScreenView.swift */; };
+		F7E2FD0229EC6FE2005F4717 /* EditPropertyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7E2FD0129EC6FE2005F4717 /* EditPropertyView.swift */; };
+		F7E2FD0629ED1298005F4717 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7E2FD0529ED1298005F4717 /* Date.swift */; };
+		F7E2FD0829EDA780005F4717 /* Double.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7E2FD0729EDA780005F4717 /* Double.swift */; };
+		F7E2FD0A29EDBE36005F4717 /* Calendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7E2FD0929EDBE36005F4717 /* Calendar.swift */; };
+		F7ECA33D29E8A8C500191C9D /* NewPropertyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7ECA33C29E8A8C500191C9D /* NewPropertyView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		F712718B296743C1007FDCB2 /* pr-sample-contract.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "pr-sample-contract.pdf"; sourceTree = "<group>"; };
-		F72123B929537D9300F1EE26 /* TransactionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TransactionView.swift; path = realestateapp/View/TransactionView.swift; sourceTree = SOURCE_ROOT; };
-		F72123BB295387BE00F1EE26 /* ContactoExpandidoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ContactoExpandidoView.swift; path = realestateapp/View/ContactoExpandidoView.swift; sourceTree = SOURCE_ROOT; };
-		F72123BD29538C8D00F1EE26 /* PropiedadExpandidaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PropiedadExpandidaView.swift; path = realestateapp/View/PropiedadExpandidaView.swift; sourceTree = SOURCE_ROOT; };
+		F72123B929537D9300F1EE26 /* TransactionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TransactionView.swift; path = realestateapp/View/Finanzas/TransactionView.swift; sourceTree = SOURCE_ROOT; };
+		F72123BB295387BE00F1EE26 /* ExpandedTenantView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ExpandedTenantView.swift; path = realestateapp/View/ExpandedTenantView.swift; sourceTree = SOURCE_ROOT; };
+		F72123BD29538C8D00F1EE26 /* PropertyDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PropertyDetailView.swift; path = realestateapp/View/Property/PropertyDetailView.swift; sourceTree = SOURCE_ROOT; };
 		F737B5C029526C6C0064ACCE /* RealEstate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RealEstate.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		F737B5C329526C6C0064ACCE /* realestateappApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = realestateappApp.swift; sourceTree = "<group>"; };
-		F737B5C529526C6C0064ACCE /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ContentView.swift; path = realestateapp/ContentView.swift; sourceTree = SOURCE_ROOT; };
+		F737B5C329526C6C0064ACCE /* realestate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = realestate.swift; sourceTree = "<group>"; };
+		F737B5C529526C6C0064ACCE /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ContentView.swift; path = realestateapp/View/ContentView.swift; sourceTree = SOURCE_ROOT; };
 		F737B5C729526C6F0064ACCE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F737B5CA29526C6F0064ACCE /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		F737B5D129526DEF0064ACCE /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HomeView.swift; path = realestateapp/View/HomeView.swift; sourceTree = SOURCE_ROOT; };
-		F737B5D329527A170064ACCE /* CuadroPropiedadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CuadroPropiedadView.swift; path = realestateapp/View/CuadroPropiedadView.swift; sourceTree = SOURCE_ROOT; };
-		F737B5D5295338600064ACCE /* FinanzasView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FinanzasView.swift; path = realestateapp/View/FinanzasView.swift; sourceTree = SOURCE_ROOT; };
+		F737B5D329527A170064ACCE /* PropertyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PropertyView.swift; path = realestateapp/View/Property/PropertyView.swift; sourceTree = SOURCE_ROOT; };
+		F737B5D5295338600064ACCE /* FinanzasView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FinanzasView.swift; path = realestateapp/View/Finanzas/FinanzasView.swift; sourceTree = SOURCE_ROOT; };
+		F73D187729B6F20500F4D2D4 /* FetcherService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetcherService.swift; sourceTree = "<group>"; };
 		F74F1767295618B90044F7AF /* AjustesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AjustesView.swift; sourceTree = "<group>"; };
-		F74F470E29565E840012CCF5 /* Guest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Guest.swift; sourceTree = "<group>"; };
-		F74F4710295660620012CCF5 /* Owner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Owner.swift; sourceTree = "<group>"; };
+		F74F470E29565E840012CCF5 /* Tenant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tenant.swift; sourceTree = "<group>"; };
+		F74F4710295660620012CCF5 /* LandLordUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandLordUser.swift; sourceTree = "<group>"; };
 		F74F4712295661750012CCF5 /* Property.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Property.swift; sourceTree = "<group>"; };
+		F762001229F83A39003FC0B5 /* NewTenantView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTenantView.swift; sourceTree = "<group>"; };
+		F762001429F87C0B003FC0B5 /* Transaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transaction.swift; sourceTree = "<group>"; };
 		F7769F9C29B3B19500B8518F /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
 		F7769F9E29B3B9C900B8518F /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
 		F7769FA029B3BB2F00B8518F /* RealEstate-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "RealEstate-Info.plist"; sourceTree = "<group>"; };
 		F79BF92C29B036840083AF3C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F79BF93729B039550083AF3C /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
-		F79BF93929B039760083AF3C /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		F7BC114F29B682E300C65173 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
+		F7BC115229B686CB00C65173 /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
 		F7D8DAA0295640070096A811 /* ContractView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContractView.swift; sourceTree = "<group>"; };
+		F7D983BF29BA836300C334FC /* SelectProfilePhotoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectProfilePhotoView.swift; sourceTree = "<group>"; };
+		F7DB242029B6E610009040C1 /* ImageUploader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageUploader.swift; sourceTree = "<group>"; };
+		F7E2AAAF29E5CBD0006FD55F /* LaunchScreenStateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreenStateManager.swift; sourceTree = "<group>"; };
+		F7E2AAB129E5CC98006FD55F /* LaunchScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreenView.swift; sourceTree = "<group>"; };
+		F7E2FD0129EC6FE2005F4717 /* EditPropertyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPropertyView.swift; sourceTree = "<group>"; };
+		F7E2FD0529ED1298005F4717 /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
+		F7E2FD0729EDA780005F4717 /* Double.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Double.swift; sourceTree = "<group>"; };
+		F7E2FD0929EDBE36005F4717 /* Calendar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Calendar.swift; sourceTree = "<group>"; };
+		F7ECA33C29E8A8C500191C9D /* NewPropertyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPropertyView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,21 +92,40 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F79BF93029B037380083AF3C /* FirebaseAnalytics in Frameworks */,
-				F79BF93229B037380083AF3C /* FirebaseAuth in Frameworks */,
-				F79BF93429B037380083AF3C /* FirebaseFirestore in Frameworks */,
+				F73D187229B6E95100F4D2D4 /* FirebaseAuth in Frameworks */,
+				F71B5AB229E4A58200F0C8E3 /* FirebaseFirestoreSwift-Beta in Frameworks */,
+				F73D187429B6E95100F4D2D4 /* FirebaseFirestore in Frameworks */,
+				F73D187629B6E95100F4D2D4 /* FirebaseStorage in Frameworks */,
+				F71B5AB529E4AA7D00F0C8E3 /* Kingfisher in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F71B5AAF29E482A500F0C8E3 /* Finanzas */ = {
+			isa = PBXGroup;
+			children = (
+				F737B5D5295338600064ACCE /* FinanzasView.swift */,
+				F72123B929537D9300F1EE26 /* TransactionView.swift */,
+			);
+			path = Finanzas;
+			sourceTree = "<group>";
+		};
+		F71B5AB029E4A58200F0C8E3 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		F737B5B729526C6C0064ACCE = {
 			isa = PBXGroup;
 			children = (
 				F7769FA029B3BB2F00B8518F /* RealEstate-Info.plist */,
 				F737B5C229526C6C0064ACCE /* realestateapp */,
 				F737B5C129526C6C0064ACCE /* Products */,
+				F71B5AB029E4A58200F0C8E3 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -94,12 +141,14 @@
 			isa = PBXGroup;
 			children = (
 				F79BF92C29B036840083AF3C /* GoogleService-Info.plist */,
+				F737B5C329526C6C0064ACCE /* realestate.swift */,
+				F7DB241F29B6E5F9009040C1 /* Service */,
+				F7BC115129B686B600C65173 /* Extensions */,
+				F7BC114E29B682CF00C65173 /* Utils */,
 				F74F470D29565E390012CCF5 /* ViewModel */,
 				F7EE6E54295503D4006EFF35 /* Model */,
 				F7EE6E53295503CA006EFF35 /* View */,
 				F7D8DA9D29563EFC0096A811 /* Data */,
-				F737B5C329526C6C0064ACCE /* realestateappApp.swift */,
-				F737B5C529526C6C0064ACCE /* ContentView.swift */,
 				F737B5C729526C6F0064ACCE /* Assets.xcassets */,
 				F737B5C929526C6F0064ACCE /* Preview Content */,
 			);
@@ -118,9 +167,16 @@
 			isa = PBXGroup;
 			children = (
 				F7769F9929B3B17000B8518F /* Auth */,
-				F79BF93929B039760083AF3C /* LoginViewModel.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		F762001129F83A28003FC0B5 /* Tenant */ = {
+			isa = PBXGroup;
+			children = (
+				F762001229F83A39003FC0B5 /* NewTenantView.swift */,
+			);
+			path = Tenant;
 			sourceTree = "<group>";
 		};
 		F7769F9929B3B17000B8518F /* Auth */ = {
@@ -131,6 +187,25 @@
 			path = Auth;
 			sourceTree = "<group>";
 		};
+		F7BC114E29B682CF00C65173 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				F7BC114F29B682E300C65173 /* ImagePicker.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		F7BC115129B686B600C65173 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				F7BC115229B686CB00C65173 /* View.swift */,
+				F7E2FD0529ED1298005F4717 /* Date.swift */,
+				F7E2FD0729EDA780005F4717 /* Double.swift */,
+				F7E2FD0929EDBE36005F4717 /* Calendar.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		F7D8DA9D29563EFC0096A811 /* Data */ = {
 			isa = PBXGroup;
 			children = (
@@ -139,19 +214,58 @@
 			path = Data;
 			sourceTree = "<group>";
 		};
+		F7D983BE29BA833600C334FC /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				F79BF93729B039550083AF3C /* LoginView.swift */,
+				F7769F9E29B3B9C900B8518F /* RegisterView.swift */,
+				F7D983BF29BA836300C334FC /* SelectProfilePhotoView.swift */,
+			);
+			path = Auth;
+			sourceTree = "<group>";
+		};
+		F7DB241F29B6E5F9009040C1 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				F7DB242029B6E610009040C1 /* ImageUploader.swift */,
+				F73D187729B6F20500F4D2D4 /* FetcherService.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		F7E2AAAC29E5CB87006FD55F /* LaunchScreen */ = {
+			isa = PBXGroup;
+			children = (
+				F7E2AAAF29E5CBD0006FD55F /* LaunchScreenStateManager.swift */,
+				F7E2AAB129E5CC98006FD55F /* LaunchScreenView.swift */,
+			);
+			path = LaunchScreen;
+			sourceTree = "<group>";
+		};
+		F7ECA33B29E8A8B700191C9D /* Property */ = {
+			isa = PBXGroup;
+			children = (
+				F72123BD29538C8D00F1EE26 /* PropertyDetailView.swift */,
+				F737B5D329527A170064ACCE /* PropertyView.swift */,
+				F7ECA33C29E8A8C500191C9D /* NewPropertyView.swift */,
+				F7E2FD0129EC6FE2005F4717 /* EditPropertyView.swift */,
+			);
+			path = Property;
+			sourceTree = "<group>";
+		};
 		F7EE6E53295503CA006EFF35 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				F737B5D5295338600064ACCE /* FinanzasView.swift */,
-				F72123B929537D9300F1EE26 /* TransactionView.swift */,
+				F762001129F83A28003FC0B5 /* Tenant */,
+				F737B5C529526C6C0064ACCE /* ContentView.swift */,
 				F737B5D129526DEF0064ACCE /* HomeView.swift */,
-				F72123BD29538C8D00F1EE26 /* PropiedadExpandidaView.swift */,
-				F737B5D329527A170064ACCE /* CuadroPropiedadView.swift */,
-				F72123BB295387BE00F1EE26 /* ContactoExpandidoView.swift */,
+				F7E2AAAC29E5CB87006FD55F /* LaunchScreen */,
+				F7D983BE29BA833600C334FC /* Auth */,
+				F71B5AAF29E482A500F0C8E3 /* Finanzas */,
+				F7ECA33B29E8A8B700191C9D /* Property */,
+				F72123BB295387BE00F1EE26 /* ExpandedTenantView.swift */,
 				F74F1767295618B90044F7AF /* AjustesView.swift */,
 				F7D8DAA0295640070096A811 /* ContractView.swift */,
-				F79BF93729B039550083AF3C /* LoginView.swift */,
-				F7769F9E29B3B9C900B8518F /* RegisterView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -159,9 +273,10 @@
 		F7EE6E54295503D4006EFF35 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				F74F470E29565E840012CCF5 /* Guest.swift */,
-				F74F4710295660620012CCF5 /* Owner.swift */,
+				F74F470E29565E840012CCF5 /* Tenant.swift */,
+				F74F4710295660620012CCF5 /* LandLordUser.swift */,
 				F74F4712295661750012CCF5 /* Property.swift */,
+				F762001429F87C0B003FC0B5 /* Transaction.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -183,9 +298,11 @@
 			);
 			name = RealEstate;
 			packageProductDependencies = (
-				F79BF92F29B037380083AF3C /* FirebaseAnalytics */,
-				F79BF93129B037380083AF3C /* FirebaseAuth */,
-				F79BF93329B037380083AF3C /* FirebaseFirestore */,
+				F73D187129B6E95100F4D2D4 /* FirebaseAuth */,
+				F73D187329B6E95100F4D2D4 /* FirebaseFirestore */,
+				F73D187529B6E95100F4D2D4 /* FirebaseStorage */,
+				F71B5AB129E4A58200F0C8E3 /* FirebaseFirestoreSwift-Beta */,
+				F71B5AB429E4AA7D00F0C8E3 /* Kingfisher */,
 			);
 			productName = realestateapp;
 			productReference = F737B5C029526C6C0064ACCE /* RealEstate.app */;
@@ -208,15 +325,17 @@
 			};
 			buildConfigurationList = F737B5BB29526C6C0064ACCE /* Build configuration list for PBXProject "RealEstate" */;
 			compatibilityVersion = "Xcode 14.0";
-			developmentRegion = en;
+			developmentRegion = es;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 				Base,
+				es,
 			);
 			mainGroup = F737B5B729526C6C0064ACCE;
 			packageReferences = (
-				F79BF92E29B037380083AF3C /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				F73D187029B6E95000F4D2D4 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				F71B5AB329E4AA7D00F0C8E3 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 			);
 			productRefGroup = F737B5C129526C6C0064ACCE /* Products */;
 			projectDirPath = "";
@@ -246,23 +365,36 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F72123BE29538C8D00F1EE26 /* PropiedadExpandidaView.swift in Sources */,
-				F74F4711295660620012CCF5 /* Owner.swift in Sources */,
-				F74F470F29565E840012CCF5 /* Guest.swift in Sources */,
+				F762001329F83A39003FC0B5 /* NewTenantView.swift in Sources */,
+				F72123BE29538C8D00F1EE26 /* PropertyDetailView.swift in Sources */,
+				F74F4711295660620012CCF5 /* LandLordUser.swift in Sources */,
+				F74F470F29565E840012CCF5 /* Tenant.swift in Sources */,
+				F7E2FD0229EC6FE2005F4717 /* EditPropertyView.swift in Sources */,
+				F7BC115029B682E300C65173 /* ImagePicker.swift in Sources */,
+				F7DB242129B6E610009040C1 /* ImageUploader.swift in Sources */,
 				F737B5D229526DEF0064ACCE /* HomeView.swift in Sources */,
 				F7D8DAA1295640070096A811 /* ContractView.swift in Sources */,
+				F7BC115329B686CB00C65173 /* View.swift in Sources */,
 				F74F1768295618B90044F7AF /* AjustesView.swift in Sources */,
 				F74F4713295661750012CCF5 /* Property.swift in Sources */,
-				F737B5D429527A170064ACCE /* CuadroPropiedadView.swift in Sources */,
+				F737B5D429527A170064ACCE /* PropertyView.swift in Sources */,
 				F7769F9F29B3B9C900B8518F /* RegisterView.swift in Sources */,
-				F79BF93A29B039760083AF3C /* LoginViewModel.swift in Sources */,
+				F762001529F87C0B003FC0B5 /* Transaction.swift in Sources */,
 				F79BF93829B039550083AF3C /* LoginView.swift in Sources */,
 				F737B5D6295338600064ACCE /* FinanzasView.swift in Sources */,
 				F737B5C629526C6C0064ACCE /* ContentView.swift in Sources */,
 				F7769F9D29B3B19500B8518F /* AuthViewModel.swift in Sources */,
-				F737B5C429526C6C0064ACCE /* realestateappApp.swift in Sources */,
+				F73D187829B6F20500F4D2D4 /* FetcherService.swift in Sources */,
+				F7E2FD0A29EDBE36005F4717 /* Calendar.swift in Sources */,
+				F737B5C429526C6C0064ACCE /* realestate.swift in Sources */,
+				F7ECA33D29E8A8C500191C9D /* NewPropertyView.swift in Sources */,
+				F7E2AAB029E5CBD0006FD55F /* LaunchScreenStateManager.swift in Sources */,
 				F72123BA29537D9300F1EE26 /* TransactionView.swift in Sources */,
-				F72123BC295387BE00F1EE26 /* ContactoExpandidoView.swift in Sources */,
+				F7E2FD0629ED1298005F4717 /* Date.swift in Sources */,
+				F7D983C029BA836300C334FC /* SelectProfilePhotoView.swift in Sources */,
+				F72123BC295387BE00F1EE26 /* ExpandedTenantView.swift in Sources */,
+				F7E2AAB229E5CC98006FD55F /* LaunchScreenView.swift in Sources */,
+				F7E2FD0829EDA780005F4717 /* Double.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -395,8 +527,9 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "RealEstate-Info.plist";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreenView.swift;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -424,8 +557,9 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "RealEstate-Info.plist";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreenView.swift;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -465,31 +599,49 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		F79BF92E29B037380083AF3C /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+		F71B5AB329E4AA7D00F0C8E3 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.0.0;
+			};
+		};
+		F73D187029B6E95000F4D2D4 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 9.0.0;
+				minimumVersion = 8.0.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		F79BF92F29B037380083AF3C /* FirebaseAnalytics */ = {
+		F71B5AB129E4A58200F0C8E3 /* FirebaseFirestoreSwift-Beta */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = F79BF92E29B037380083AF3C /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseAnalytics;
+			package = F73D187029B6E95000F4D2D4 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = "FirebaseFirestoreSwift-Beta";
 		};
-		F79BF93129B037380083AF3C /* FirebaseAuth */ = {
+		F71B5AB429E4AA7D00F0C8E3 /* Kingfisher */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = F79BF92E29B037380083AF3C /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			package = F71B5AB329E4AA7D00F0C8E3 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
+		F73D187129B6E95100F4D2D4 /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F73D187029B6E95000F4D2D4 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseAuth;
 		};
-		F79BF93329B037380083AF3C /* FirebaseFirestore */ = {
+		F73D187329B6E95100F4D2D4 /* FirebaseFirestore */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = F79BF92E29B037380083AF3C /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			package = F73D187029B6E95000F4D2D4 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseFirestore;
+		};
+		F73D187529B6E95100F4D2D4 /* FirebaseStorage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F73D187029B6E95000F4D2D4 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseStorage;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

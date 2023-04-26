@@ -7,14 +7,26 @@
 
 import Foundation
 import SwiftUI
-import Firebase
+import FirebaseAuth
+import FirebaseFirestore
 
 class AuthViewModel: ObservableObject {
     @Published var userSession: FirebaseAuth.User?
+    @Published var didAuthenticateUser: Bool = false
+    @Published var currentLandlord: LandLordUser?
+    @Published var userProperties: [Property]?
+    @Published var userTransactions: [Transaction]?
+    private var tempUserSession: FirebaseAuth.User?
+    private var userService = UserService()
+    private var propertyService = PropertyService()
+    
     init() {
         self.userSession = Auth.auth().currentUser
-        print("DEBUG: Current User session is \(String(describing: userSession))")
+        self.fetchUser()
     }
+    
+    //MARK: - Authentication
+    
     func login(withEmail email: String, password: String) {
         guard !email.isEmpty, !password.isEmpty else { return }
         Auth.auth().signIn(withEmail: email, password: password) { authResult, error in
@@ -24,10 +36,9 @@ class AuthViewModel: ObservableObject {
             }
             
             guard let user = authResult?.user else { return }
-            
             self.userSession = user
+            self.fetchUser()
             print("DEBUG: User Signed in Succesfully")
-            print(user)
         }
     }
     
@@ -39,27 +50,149 @@ class AuthViewModel: ObservableObject {
                 return
             }
             guard let user = authResult?.user else { return }
-            self.userSession = user
+            self.tempUserSession = user
             
-            let data:[String: String] = [
+            let data: Dictionary<String, String> = [
                 "email": email,
                 "name": name,
                 "lastname": lastName,
                 "uid": user.uid
             ]
-            
             Firestore.firestore().collection("users").document(user.uid)
                 .setData(data) { _ in
-                    print("DEBUG: User data set!")
+                    self.didAuthenticateUser = true
+                    
                 }
-            
-            print("DEBUG: User Registered Succesfully")
+            self.userSession = user
         }
     }
     
     func logOut() {
         try? Auth.auth().signOut()
         userSession = nil
-        print("DEBUG: User Signed Out Succesfully")
+    }
+    
+    //MARK: - Update
+    
+    func updateName(with newCompleteName: String) -> Void {
+        guard let uid = userSession?.uid else { return }
+        
+        let fullNameArr:[String] = newCompleteName.components(separatedBy: " ")
+        
+        let docRef = Firestore.firestore().collection("users").document(uid)
+        
+        let lastName: String? = fullNameArr.count > 1 ? fullNameArr[1] : nil
+        if let lastName {
+            docRef
+                .updateData(["lastname": lastName])
+        }
+       
+        let name = fullNameArr[0] as String
+        
+        docRef
+            .updateData(["name": name])
+    }
+    
+    func updateProperty(property: Property) -> Void {
+        guard let propertyUid: String = property.id else { return }
+        
+        let docRef = Firestore.firestore().collection("properties").document(propertyUid)
+        
+        docRef.updateData([
+            "address": property.address,
+            "area": property.area as Any,
+            "noRooms": property.noRooms as Any,
+            "name": property.title
+        ]) { err in
+            if let err = err {
+                print("DEBUG Error writing document: \(err)")
+            } else {
+                print("DEBUG Document successfully written!")
+            }
+        }
+    }
+    
+    //MARK: - Delete
+    
+    func deleteProperty(property: Property) -> Void {
+        guard let propertyUid: String = property.id else { return }
+        
+        let docRef = Firestore.firestore().collection("properties").document(propertyUid)
+        docRef.delete { error in
+            if let error {
+                print("DEBUG error while deleting property.")
+            } else {
+                print("DEBUG property deleted succesfully.")
+            }
+        }
+    }
+    
+    //MARK: - upload To Firebase
+    
+    func uploadProfileImage(_ image: UIImage) {
+        guard let uid = userSession?.uid else { return }
+        ImageUploader.uploadImage(image: image) { profileImageUrl in
+            Firestore.firestore().collection("users")
+                .document(uid)
+                .updateData(["profileImageUrl": profileImageUrl])
+        }
+    }
+    
+    func uploadProperty(_ name: String, noRooms: Int, address: String, area: Int) async -> Void {
+        guard let uid = userSession?.uid else { return }
+        let docRef = Firestore.firestore().collection("properties")
+        docRef.addDocument(data: [
+            "name": name,
+            "noRooms": noRooms,
+            "address": address,
+            "area": area,
+            "landlord": uid
+        ]) { err in
+            if let err = err {
+                print("DEBUG Error writing document: \(err)")
+            } else {
+                print("DEBUG Document successfully updated!")
+            }
+        }
+    }
+    
+    func uploadTransaction(transaction: Transaction) async -> Void {
+        guard let uid = userSession?.uid else { return }
+        let collectionRef = Firestore.firestore().collection("users").document(uid).collection("transactions")
+        collectionRef.addDocument(data: [
+            "amount": transaction.income,
+            "date": transaction.date,
+            "tenantId": "JrAyC1dj9Cu6ShumCzZP",
+        ]) { err in
+            if let err = err {
+                print("DEBUG Error writing document: \(err)")
+            } else {
+                print("DEBUG Document successfully updated!")
+            }
+        }
+    }
+    
+    
+    //MARK: - fetching data
+    
+    func fetchUser() {
+        guard let uid = self.userSession?.uid else { return }
+        userService.fetchUser(withUid: uid) { user in
+            self.currentLandlord = user
+        }
+    }
+    
+    func fetchProperties() {
+        guard let uid = self.userSession?.uid else { return }
+        propertyService.fetchProperties(fromUserWithUid: uid) { properties in
+            self.userProperties = properties
+        }
+    }
+    
+    func fetchTransactions(_ completion: @escaping(([Transaction]) -> Void)) {
+        guard let uid = self.userSession?.uid else { return }
+        userService.fetchTransactions(fromUserWithUid: uid) { transactions in
+            completion(transactions)
+        }
     }
 }

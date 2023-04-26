@@ -7,35 +7,70 @@
 import SwiftUI
 
 struct HomeView: View {
-    @Binding var isPopUpProperty: Bool
-//    @Binding var properties:[CuadroPropiedadView] = [
-//        CuadroPropiedadView(isPopUpProperty: isPopUpProperty, imgName: "casa1", propertyTitle: "Paseo Interlomas", propertyAddr: "ZARAGOZA Y REP DE MEXICO 411 PTE, CIUDAD OBREGON CENTRO, 85000"),
-//        CuadroPropiedadView(imgName: "casa3", propertyTitle: "La choza", propertyAddr: "PLAZA PERDIS NO. 12, 1A SECC LOMAS VERDES, 53120"),
-//        CuadroPropiedadView(imgName: "casa2", propertyTitle: "Nueva casa", propertyAddr: "HIDALGO NO. 105 Int. NO. 1, CENTRO, 59300"),
-//        CuadroPropiedadView(imgName: "casa1", propertyTitle: "Deptos Santa María", propertyAddr: "CARR SAN LUIS RIO COLORADO NO. KM 7, GONZALEZ ORTEGA, 21397"),
-//        CuadroPropiedadView(imgName: "casa2", propertyTitle: "Deptos Santa María", propertyAddr: "AGUSTIN YAÑEZ 2889, ARCOS VALLARTA SUR, 44500"),
-//        CuadroPropiedadView(imgName: "casa1", propertyTitle: "Deptos Santa María", propertyAddr: "FELIPE CARRILLO PUERTO NO. 402 NO. B, PENSIL SUR, 11490")
-//    ]
-    @Namespace var namespace: Namespace.ID
+    
+    @EnvironmentObject private var authModel: AuthViewModel
+    
+    @State private var isShowingNewPropertySheet: Bool = false
+    
+    @State private var isHomeActive: Bool = false
     
     var body: some View {
-        ZStack(alignment:.leading) {
-            NavigationView {
-                ScrollView(showsIndicators: false) {
-                    VStack {
-                        CuadroPropiedadView(isPopUpProperty: $isPopUpProperty, imgName: "casa2", propertyTitle: "Deptos Santa María", propertyAddr: "7A NORTE NO. 197, TUXTLA GUTIERREZ CENTRO, 29000", namespace: _namespace)
+        NavigationView {
+            ScrollView(showsIndicators: false) {
+                if let properties = authModel.userProperties {
+                    if properties.isEmpty {
+                        VStack(alignment: .center) {
+                            HStack(alignment: .center) {
+                                Text("Oh, it seems that you do not have any property yet, tap on the \(Image(systemName: "plus")) button to create one!")
+                            }
+                        }
+                        .frame(
+                            minHeight: 0,
+                            maxHeight: .infinity
+                        )
+                    } else {
+                        ForEach(properties) { prop in
+                            NavigationLink(destination: PropertyDetailView(property: prop)) {
+                                PropertyView(imgName: prop.imgName ?? "casa2", propertyTitle: prop.title, propertyAddr: prop.address)
+                            }
+                            .padding(.bottom, 10)
+                        }
+                    }
+                } else {
+                    ProgressView()
+                        .progressViewStyle(.circular)
+                }
+            }
+            .navigationTitle("Tus propiedades")
+            .toolbar{
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Menu {
+                        Button(action: {
+                            isShowingNewPropertySheet.toggle()
+                        }, label: {
+                            Label("Propiedad", systemImage: "house.lodge")
+                        })
+                        .foregroundColor(Color(.systemBlue))
+                    } label: {
+                        Image(systemName: "plus")
+                            .rotationEffect(.init(degrees: 90))
+                            .scaleEffect(0.8)
+                            .tint(.accentColor)
                     }
                 }
-                .navigationTitle("Tus propiedades")
             }
+            .sheet(isPresented: $isShowingNewPropertySheet) {
+                NewPropertyView()
+            }
+            .onAppear(perform: loadProperties)
         }
+        .navigationViewStyle(StackNavigationViewStyle())
+
         
     }
-}
-
-struct Previews_HomeView_Previews: PreviewProvider {
-    @State static var value = false
-    static var previews: some View {
-        HomeView(isPopUpProperty: $value)
+    
+    func loadProperties() -> Void {
+        authModel.fetchProperties()
     }
+    
 }
