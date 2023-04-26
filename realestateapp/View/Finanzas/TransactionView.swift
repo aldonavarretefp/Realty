@@ -70,8 +70,8 @@ struct TransactionViewRow: View {
             })
             .padding(.trailing, 5)
             .sheet(isPresented: $showSheet){
-                ExpandedTenantView()
-                    .presentationDetents([.fraction(0.80), .large])
+//                ExpandedTenantView()
+//                    .presentationDetents([.fraction(0.80), .large])
             }
         }
         .frame(

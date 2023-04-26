@@ -119,7 +119,7 @@ class AuthViewModel: ObservableObject {
         
         let docRef = Firestore.firestore().collection("properties").document(propertyUid)
         docRef.delete { error in
-            if let error {
+            if error != nil {
                 print("DEBUG error while deleting property.")
             } else {
                 print("DEBUG property deleted succesfully.")
@@ -138,22 +138,26 @@ class AuthViewModel: ObservableObject {
         }
     }
     
-    func uploadProperty(_ name: String, noRooms: Int, address: String, area: Int) async -> Void {
+    func uploadProperty(property: Property) async -> Void {
         guard let uid = userSession?.uid else { return }
         let docRef = Firestore.firestore().collection("properties")
         docRef.addDocument(data: [
-            "name": name,
-            "noRooms": noRooms,
-            "address": address,
-            "area": area,
-            "landlord": uid
-        ]) { err in
-            if let err = err {
-                print("DEBUG Error writing document: \(err)")
-            } else {
-                print("DEBUG Document successfully updated!")
+                "name": property.title,
+                "noRooms": property.noRooms ?? 0,
+                "address": property.address,
+                "area": property.area ?? 0.0,
+                "landlord": uid,
+                "tenant": [
+                    "name": property.tenant?.name
+                ]
+            ]) { err in
+                if let err = err {
+                    print("DEBUG Error writing document: \(err)")
+                } else {
+                    print("DEBUG Document successfully updated!")
+                }
             }
-        }
+        
     }
     
     func uploadTransaction(transaction: Transaction) async -> Void {

@@ -18,6 +18,7 @@ struct HomeView: View {
         NavigationView {
             ScrollView(showsIndicators: false) {
                 if let properties = authModel.userProperties {
+                    
                     if properties.isEmpty {
                         VStack(alignment: .center) {
                             HStack(alignment: .center) {

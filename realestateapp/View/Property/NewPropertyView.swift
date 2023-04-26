@@ -22,6 +22,7 @@ struct NewPropertyView: View {
     @State private var address: String = ""
     @State private var isLoading: Bool = false
     @State private var isSubmitButtonDisabled: Bool = true
+    @State private var tenantName: String = ""
     
     var body: some View {
         NavigationView {
@@ -43,13 +44,15 @@ struct NewPropertyView: View {
         }
     }
     
-    func submitProperty(_ name: String, noRooms: Int, address: String, area: String) async  {
+    func submitProperty(_ name: String, noRooms: Int, address: String, area: String, tenantName: String) async -> Void {
+        guard let areaDouble: Double = Double(area) else { return }
         
         isLoading = true
         
-        await authModel.uploadProperty(name, noRooms: noRooms, address: address, area: Int(area) ?? 0)
+        let property: Property = .init(title: name, address: address, tenant: .init(name: tenantName), area: areaDouble, noRooms: noRooms)
         
-//        sheetIsUp = false
+        await authModel.uploadProperty(property: property)
+        
         presentationMode.wrappedValue.dismiss()
     }
     
@@ -76,7 +79,7 @@ extension NewPropertyView {
                     
             }
             Section(content: {
-                NavigationLink("Información de inquilino/huésped", destination: NewTenantView())
+                NavigationLink("Información de inquilino/huésped", destination: NewTenantView(tenantName: $tenantName))
             }, header: {
                 Text("Inquilino")
             }, footer: {
@@ -101,9 +104,8 @@ extension NewPropertyView {
             ToolbarItem(placement: .confirmationAction) {
                 Button {
                     Task {
-                        await submitProperty(propertyName, noRooms: noRooms, address: address, area: sqFootArea)
+                        await submitProperty(propertyName, noRooms: noRooms, address: address, area: sqFootArea, tenantName: tenantName)
                     }
-                    
                 } label: {
                     Text("Crear")
                         .padding(.trailing, 10)
@@ -113,11 +115,5 @@ extension NewPropertyView {
             }
             
         }
-    }
-}
-
-struct Previews_NewPropertyView_Previews: PreviewProvider {
-    static var previews: some View {
-        NewPropertyView()
     }
 }

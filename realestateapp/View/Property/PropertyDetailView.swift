@@ -20,16 +20,10 @@ struct PropertyDetailView: View {
         return tenant
     }
     var noRooms:Int {
-        guard let noRooms = property.noRooms else {
-            return 0
-        }
-        return noRooms
+        return property.noRooms
     }
     var area: Double {
-        guard let area = property.area else {
-            return 0.0
-        }
-        return area
+        return property.area
     }
     
     private let adaptiveCol = [
@@ -42,6 +36,7 @@ struct PropertyDetailView: View {
             propertyImageWithInfoView
             propertyInfoGridView
                 .padding(.top, 20)
+            propertyTenantsView
         }
         .edgesIgnoringSafeArea(.top)
         .toolbar {
@@ -57,6 +52,7 @@ struct PropertyDetailView: View {
 }
 
 extension PropertyDetailView {
+    
     var propertyImageWithInfoView: some View {
         ZStack {
             propertyImgView
@@ -81,6 +77,7 @@ extension PropertyDetailView {
             .padding()
         }
     }
+    
     var propertyImgView: some View {
         Image(property.imgName ?? "casa 1")
             .resizable()
@@ -107,6 +104,24 @@ extension PropertyDetailView {
                     )
             }
             .clipped()
+    }
+    
+    var propertyTenantsView: some View {
+        VStack {
+            if let tenant = property.tenant {
+                Text("Inquilino")
+                    .frame(
+                        minWidth: 0,
+                        maxWidth: .infinity,
+                        alignment: .leading
+                    )
+                    .padding(.leading, 20)
+                    .padding(.top, 10)
+                    .font(.largeTitle)
+                    .bold()
+                TenantRowView(tenant: tenant)
+            }
+        }
     }
 }
 

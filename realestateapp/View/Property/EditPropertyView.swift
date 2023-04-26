@@ -18,12 +18,7 @@ struct EditPropertyView: View {
     @State private var isSubmitButtonDisabled: Bool = true
     @State private var isPresentingConfirm: Bool = false
     @State private var noRooms: Int?
-//    private var noRoomsVar: Int {
-//        guard let noRooms = property.noRooms else {
-//            return 0
-//        }
-//        return noRooms
-//    }
+    @State private var tenant: Tenant = .init(name: "")
     @Binding var property: Property
     
     var body: some View {
@@ -36,36 +31,38 @@ struct EditPropertyView: View {
                             isSubmitButtonDisabled = $0 != property ? true : false
                         }
                 }
-                
                 Section("Número de cuartos") {
-                    Stepper("\(String(describing: noRooms))", onIncrement: {
-                        property.noRooms = noRooms
-                    }, onDecrement: {
-                        property.noRooms = noRooms
-                    })
+                    Stepper("\(property.noRooms)", value: $property.noRooms, in: 0...20)
                 }
+                
                 Section("Dirección") {
                     TextField("¿Dónde se encuentra?", text: $property.address)
                         .submitLabel(.go)
                 }
+                
                 Section(content: {
-                    NavigationLink("Información de inquilino/huésped", destination: NewTenantView())
+                    NavigationLink("Información de inquilino/huésped", destination: {NewTenantView(tenantName: $tenant.name)})
+                        .onChange(of: tenant) { newValue in
+                            property.tenant = newValue
+                        }
                 }, header: {
                     Text("Inquilino")
                 }, footer: {
                     Text("Puedes omitir este campo para después.")
                 })
+                
                 Section("Área (en metros cuadrados)") {
                     TextField("Area", value: $property.area, format: .number)
                         .keyboardType(.decimalPad)
                 }
-                Button("Borrar", role: .destructive) {
-                    isPresentingConfirm = true
+                Button(role: .destructive, action: {deleteProperty(property: property)}) {
+                    Label("Borrar", systemImage: "trash")
+                        .foregroundColor(.red)
                 }
                 .confirmationDialog("¿Está seguro de borrar la propiedad?",
                                     isPresented: $isPresentingConfirm) {
-                    Button("Borrar Propiedad", role: .destructive) {
-                        deleteProperty(property: property)
+                    Button(role: .destructive, action: {deleteProperty(property: property)}) {
+                        Label("Borrar", systemImage: "trash")
                     }
                 }
             }
@@ -90,10 +87,8 @@ struct EditPropertyView: View {
                     updateProperty()
                 } label: {
                     Text("Actualizar")
-                        .padding(.trailing, 10)
                 }
                 .disabled(isSubmitButtonDisabled)
-                .cornerRadius(10)
             }
             
         }

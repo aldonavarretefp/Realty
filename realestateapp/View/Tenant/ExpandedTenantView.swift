@@ -12,14 +12,14 @@ struct ExpandedTenantView: View {
     
     private var tenant: Tenant = .init(id: UUID().uuidString, name: "Doris", middleName: "Gray", lastName: "Gorczany", secondLastName: "Donnelly", startDate: Date.from(day: 12, month: 05, year: 2022), endDate: Date.from(day: 30, month: 04, year: 2023), paymentDOTM: 2, contract: URL(fileURLWithPath: "pr-sample-contract"))
     
-    var guestName: String { tenant.name }
-    var startDate: Date {
+    private var guestName: String { tenant.name }
+    private var startDate: Date {
         if let startDate = tenant.startDate {
             return startDate
         }
         return Date.now
     }
-    var endDate: Date {
+    private var endDate: Date {
         if let endDate = tenant.endDate {
             return endDate
         }
@@ -27,6 +27,12 @@ struct ExpandedTenantView: View {
     }
     
     @State private var showPDFSheet: Bool = false
+    
+    public var tenantL: Tenant
+    
+    init(tenantLim: Tenant){
+        self.tenantL = tenantLim
+    }
     
     var body: some View {
         ScrollView {
@@ -41,7 +47,7 @@ struct ExpandedTenantView: View {
                         maxHeight: 400
                     )
                     .clipped()
-                Text(tenant.name)
+                Text(tenantL.name)
                     .font(.system(size: 40))
                     .fontWeight(.bold)
                     .padding(.leading, 20)
@@ -170,8 +176,8 @@ struct DateInfoView: View {
     }
 }
 
-struct Previews_ContactoExpandidoView_Previews: PreviewProvider {
-    static var previews: some View {
-        ExpandedTenantView()
-    }
-}
+//struct Previews_ContactoExpandidoView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        ExpandedTenantView(tenantLimited: .init(name: "Abuelo"))
+//    }
+//}

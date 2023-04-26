@@ -9,9 +9,13 @@ import FirebaseFirestoreSwift
 import Foundation
 
 
-struct Tenant: Identifiable, Decodable {
+struct Tenant: Identifiable, Codable, Equatable {
+    static func ==(lhs: Tenant, rhs: Tenant) -> Bool {
+        return lhs.name == rhs.name
+    }
     @DocumentID var id: String?
     var name: String
+    
     var middleName: String?
     var lastName: String?
     var secondLastName: String?

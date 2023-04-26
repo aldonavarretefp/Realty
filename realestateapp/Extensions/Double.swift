@@ -16,7 +16,7 @@ extension Double {
             return String(format: "%.1M", self / 1000000)
         }
         
-        return String(format: "%.0fK", self)
+        return String(format: "%.0f.0", self)
     }
     
 }

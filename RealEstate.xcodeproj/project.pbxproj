@@ -30,6 +30,7 @@
 		F74F4713295661750012CCF5 /* Property.swift in Sources */ = {isa = PBXBuildFile; fileRef = F74F4712295661750012CCF5 /* Property.swift */; };
 		F762001329F83A39003FC0B5 /* NewTenantView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F762001229F83A39003FC0B5 /* NewTenantView.swift */; };
 		F762001529F87C0B003FC0B5 /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = F762001429F87C0B003FC0B5 /* Transaction.swift */; };
+		F774DDE029F8CAD400824389 /* TenantRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F774DDDF29F8CAD400824389 /* TenantRowView.swift */; };
 		F7769F9D29B3B19500B8518F /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7769F9C29B3B19500B8518F /* AuthViewModel.swift */; };
 		F7769F9F29B3B9C900B8518F /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7769F9E29B3B9C900B8518F /* RegisterView.swift */; };
 		F79BF92D29B036840083AF3C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F79BF92C29B036840083AF3C /* GoogleService-Info.plist */; };
@@ -51,7 +52,7 @@
 /* Begin PBXFileReference section */
 		F712718B296743C1007FDCB2 /* pr-sample-contract.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "pr-sample-contract.pdf"; sourceTree = "<group>"; };
 		F72123B929537D9300F1EE26 /* TransactionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TransactionView.swift; path = realestateapp/View/Finanzas/TransactionView.swift; sourceTree = SOURCE_ROOT; };
-		F72123BB295387BE00F1EE26 /* ExpandedTenantView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ExpandedTenantView.swift; path = realestateapp/View/ExpandedTenantView.swift; sourceTree = SOURCE_ROOT; };
+		F72123BB295387BE00F1EE26 /* ExpandedTenantView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ExpandedTenantView.swift; path = realestateapp/View/Tenant/ExpandedTenantView.swift; sourceTree = SOURCE_ROOT; };
 		F72123BD29538C8D00F1EE26 /* PropertyDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PropertyDetailView.swift; path = realestateapp/View/Property/PropertyDetailView.swift; sourceTree = SOURCE_ROOT; };
 		F737B5C029526C6C0064ACCE /* RealEstate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RealEstate.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F737B5C329526C6C0064ACCE /* realestate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = realestate.swift; sourceTree = "<group>"; };
@@ -68,6 +69,7 @@
 		F74F4712295661750012CCF5 /* Property.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Property.swift; sourceTree = "<group>"; };
 		F762001229F83A39003FC0B5 /* NewTenantView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTenantView.swift; sourceTree = "<group>"; };
 		F762001429F87C0B003FC0B5 /* Transaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transaction.swift; sourceTree = "<group>"; };
+		F774DDDF29F8CAD400824389 /* TenantRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TenantRowView.swift; sourceTree = "<group>"; };
 		F7769F9C29B3B19500B8518F /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
 		F7769F9E29B3B9C900B8518F /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
 		F7769FA029B3BB2F00B8518F /* RealEstate-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "RealEstate-Info.plist"; sourceTree = "<group>"; };
@@ -175,6 +177,8 @@
 			isa = PBXGroup;
 			children = (
 				F762001229F83A39003FC0B5 /* NewTenantView.swift */,
+				F774DDDF29F8CAD400824389 /* TenantRowView.swift */,
+				F72123BB295387BE00F1EE26 /* ExpandedTenantView.swift */,
 			);
 			path = Tenant;
 			sourceTree = "<group>";
@@ -263,7 +267,6 @@
 				F7D983BE29BA833600C334FC /* Auth */,
 				F71B5AAF29E482A500F0C8E3 /* Finanzas */,
 				F7ECA33B29E8A8B700191C9D /* Property */,
-				F72123BB295387BE00F1EE26 /* ExpandedTenantView.swift */,
 				F74F1767295618B90044F7AF /* AjustesView.swift */,
 				F7D8DAA0295640070096A811 /* ContractView.swift */,
 			);
@@ -393,6 +396,7 @@
 				F7E2FD0629ED1298005F4717 /* Date.swift in Sources */,
 				F7D983C029BA836300C334FC /* SelectProfilePhotoView.swift in Sources */,
 				F72123BC295387BE00F1EE26 /* ExpandedTenantView.swift in Sources */,
+				F774DDE029F8CAD400824389 /* TenantRowView.swift in Sources */,
 				F7E2AAB229E5CC98006FD55F /* LaunchScreenView.swift in Sources */,
 				F7E2FD0829EDA780005F4717 /* Double.swift in Sources */,
 			);
