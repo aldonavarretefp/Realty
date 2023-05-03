@@ -13,13 +13,16 @@ struct EditPropertyView: View {
     
     @EnvironmentObject private var authModel: AuthViewModel
     
+    @Binding var property: Property
+    
+    @Binding var isHomeActive: Bool
+    
     // MARK: State vars
     @State private var isLoading: Bool = false
     @State private var isSubmitButtonDisabled: Bool = true
     @State private var isPresentingConfirm: Bool = false
     @State private var noRooms: Int?
     @State private var tenant: Tenant = .init(name: "")
-    @Binding var property: Property
     
     var body: some View {
         ZStack {
@@ -98,6 +101,7 @@ struct EditPropertyView: View {
     func deleteProperty(property: Property) -> Void {
         isLoading = true
         authModel.deleteProperty(property: property)
+        isHomeActive = false
         presentationMode.wrappedValue.dismiss()
     }
     
@@ -110,6 +114,6 @@ struct EditPropertyView: View {
 
 struct EditPropertyView_Previews: PreviewProvider {
     static var previews: some View {
-        EditPropertyView(property: .constant(.init(title: "Nueva", address: "Propiedad")))
+        EditPropertyView(property: .constant(.init(title: "Nueva", address: "Propiedad")), isHomeActive: .constant(false))
     }
 }

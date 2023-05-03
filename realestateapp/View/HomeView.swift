@@ -31,7 +31,7 @@ struct HomeView: View {
                         )
                     } else {
                         ForEach(properties) { prop in
-                            NavigationLink(destination: PropertyDetailView(property: prop)) {
+                            NavigationLink(destination: PropertyDetailView(property: prop, isHomeActive: $isHomeActive), isActive: $isHomeActive) {
                                 PropertyView(imgName: prop.imgName ?? "casa2", propertyTitle: prop.title, propertyAddr: prop.address)
                             }
                             .padding(.bottom, 10)

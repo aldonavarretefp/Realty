@@ -9,9 +9,9 @@ import SwiftUI
 
 struct PropertyDetailView: View {
     
-    @State private var iOS16colorScheme: ColorScheme = .dark
-    
     @State var property: Property
+    
+    @Binding var isHomeActive: Bool
     
     var tenant: Tenant {
         guard let tenant = property.tenant else {
@@ -41,7 +41,8 @@ struct PropertyDetailView: View {
         .edgesIgnoringSafeArea(.top)
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
-                NavigationLink("Editar", destination: EditPropertyView(property: $property))
+                NavigationLink("Editar", destination: EditPropertyView(property: $property, isHomeActive: $isHomeActive))
+                    .isDetailLink(false)
             }
         }
         .navigationBarTitleDisplayMode(.inline)
@@ -66,7 +67,7 @@ extension PropertyDetailView {
                     .font(.callout)
                     .foregroundColor(.white)
                     .lineLimit(2)
-                    
+                
             }.frame(
                 minWidth: 0,
                 maxWidth: .infinity,
@@ -91,16 +92,16 @@ extension PropertyDetailView {
             .overlay {
                 Rectangle()
                     .fill(LinearGradient(
-                            gradient: Gradient(stops: [
-                                .init(color: Color(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.99)), location: 0),
-                                .init(color: Color(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.8449141142)), location: 0.02083333395421505),
-                                .init(color: Color(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.7708247103)), location:  0.0572916679084301),
-                                .init(color: Color(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.5)), location: 0.2604166567325592),
-                                .init(color: Color(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.1820157285)), location: 1)
-                            ]),
-                            startPoint: UnitPoint(x: 0, y: 0),
-                            endPoint: UnitPoint(x: 0, y: 1)
-                        )
+                        gradient: Gradient(stops: [
+                            .init(color: Color(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.99)), location: 0),
+                            .init(color: Color(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.8449141142)), location: 0.02083333395421505),
+                            .init(color: Color(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.7708247103)), location:  0.0572916679084301),
+                            .init(color: Color(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.5)), location: 0.2604166567325592),
+                            .init(color: Color(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.1820157285)), location: 1)
+                        ]),
+                        startPoint: UnitPoint(x: 0, y: 0),
+                        endPoint: UnitPoint(x: 0, y: 1)
+                    )
                     )
             }
             .clipped()
@@ -123,10 +124,7 @@ extension PropertyDetailView {
             }
         }
     }
-}
-
-extension PropertyDetailView {
-   
+    
     var propertyInfoGridView: some View {
         LazyVGrid(columns: adaptiveCol, spacing: 20) {
             VStack {
@@ -184,6 +182,6 @@ extension PropertyDetailView {
 }
 struct Previews_PropertyDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        PropertyDetailView(property: Property(title: "Nueva", address: "Propiedad"))
+        PropertyDetailView(property: Property(title: "Nueva", address: "Propiedad"), isHomeActive: .constant(false))
     }
 }

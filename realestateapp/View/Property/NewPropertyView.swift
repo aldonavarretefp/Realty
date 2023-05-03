@@ -36,7 +36,6 @@ struct NewPropertyView: View {
                         ProgressView()
                             .progressViewStyle(CircularProgressViewStyle())
                             .opacity(0.9)
-                        
                     }
                 }
             }
