@@ -10,10 +10,8 @@ import Foundation
 
 
 struct Tenant: Identifiable, Codable, Equatable {
-    static func ==(lhs: Tenant, rhs: Tenant) -> Bool {
-        return lhs.name == rhs.name
-    }
     @DocumentID var id: String?
+    
     var name: String
     
     var middleName: String?
@@ -21,7 +19,11 @@ struct Tenant: Identifiable, Codable, Equatable {
     var secondLastName: String?
     var startDate: Date?
     var endDate: Date?
-    var paymentDOTM: Int?
     var contract: URL?
     var imgUrl: String?
+    var contractUrl: String?
+    
+    static func ==(lhs: Tenant, rhs: Tenant) -> Bool {
+        return lhs.name == rhs.name
+    }
 }
