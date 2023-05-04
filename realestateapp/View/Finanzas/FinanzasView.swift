@@ -9,8 +9,8 @@ import SwiftUI
 import Charts
 
 enum Time: String, CaseIterable, Identifiable {
-    case day, month, week, year, custom
     var id: Self { self }
+    case day = "Diario", month = "Mensual", week = "Semanal", year = "Anual", custom = "Personalizado"
 }
 
 struct FinanzasView: View {
@@ -76,71 +76,21 @@ struct FinanzasView: View {
     var body: some View {
         NavigationView {
             ScrollView(showsIndicators: false) {
-                if !transactions.isEmpty {
-                    timeLapsePicker
-                    if selectedTime == .custom {
-                        gridDatePicker
-                    }
-                    if !transactionsFilteredArr.isEmpty {
-                        Text("Ganancias totales")
-                            .font(.title)
-                            .fontWeight(.bold)
-                            .frame(
-                                minWidth: 0,
-                                maxWidth: .infinity,
-                                alignment: .leading
-                            )
-                            .padding(.leading, 20)
-                        Text(totalValue.stringFormat)
-                            .font(.largeTitle)
-                            .bold()
-                            .font(.title)
-                            .frame(
-                                minWidth: 0,
-                                maxWidth: .infinity,
-                                alignment: .leading
-                            )
-                            .foregroundColor(.green)
-                            .padding(.leading, 20)
-                        Chart {
-                            ForEach(transactionsFilteredArr) {
-                                BarMark (
-                                    x: .value("Mes", $0.date, unit: chartUnitXAxis),
-                                    y: .value("Ingresos", $0.income)
-                                )
-                                .foregroundStyle(Color.green.gradient)
-                                .lineStyle(.init(lineWidth: 4))
-                                .interpolationMethod(.cardinal)
-                            }
-                        }
-                        .frame(width: 350, height: 210)
-                        .chartYAxisLabel {
-                            Label("Ingresos", systemImage: "dollarsign")
-                        }
-                    } else {
-                        Text("Ups, parece que no has tenido ninguna transacción.")
-                            .frame(
-                                minWidth: 0,
-                                maxWidth: .infinity,
-                                minHeight: 150,
-                                maxHeight: 200
-                            )
-                    }
-                    
-                    TransactionView(transactionsFilteredArr)
-
-                } else {
-                    ProgressView()
-                        .progressViewStyle(.circular)
+                timeLapsePicker
+                if selectedTime == .custom {
+                    gridDatePicker
                 }
+                if !transactionsFilteredArr.isEmpty {
+                    earningChartTitle
+                    earningChartNumber
+                    earningChart
+                }
+                TransactionView(transactionsFilteredArr)
             }
             .onChange(of: selectedTime, perform: loadData)
             .onChange(of: fromDate, perform: filterDataFrom)
             .onChange(of: untilDate, perform: filterDataUntil)
-            .onAppear {
-                loadTransactions()
-                filterDataUntil(Date())
-            }
+            .onAppear(perform: loadTransactions)
             .navigationBarTitle("Tus finanzas")
             .toolbar{
                 ToolbarItem(placement: .navigationBarTrailing) {
@@ -153,6 +103,11 @@ struct FinanzasView: View {
             }
             .sheet(isPresented: $isSheetShowing) {
                 NewTransactionView(transactions: $transactions)
+            }
+            .overlay {
+                if transactions.isEmpty {
+                    Text("Ups, parece que no has tenido ninguna transacción.")
+                }
             }
         }
         .navigationViewStyle(StackNavigationViewStyle())
@@ -204,6 +159,7 @@ struct FinanzasView: View {
     }
     
     func loadTransactions() -> Void {
+        filterDataUntil(Date.now)
         authModel.fetchTransactions({ transactions in
             self.transactions = transactions
             print(transactions)
@@ -285,11 +241,55 @@ extension FinanzasView {
         
     }
     
+    var earningChartTitle: some View {
+        Text("Ganancias totales")
+            .font(.title)
+            .fontWeight(.bold)
+            .frame(
+                minWidth: 0,
+                maxWidth: .infinity,
+                alignment: .leading
+            )
+            .padding(.leading, 20)
+    }
+    
+    var earningChartNumber: some View {
+        Text(totalValue.stringFormat)
+            .font(.largeTitle)
+            .bold()
+            .font(.title)
+            .frame(
+                minWidth: 0,
+                maxWidth: .infinity,
+                alignment: .leading
+            )
+            .foregroundColor(.green)
+            .padding(.leading, 20)
+    }
+    
+    var earningChart: some View {
+        Chart {
+            ForEach(transactionsFilteredArr) {
+                BarMark (
+                    x: .value("Mes", $0.date, unit: chartUnitXAxis),
+                    y: .value("Ingresos", $0.income)
+                )
+                .foregroundStyle(Color.green.gradient)
+                .lineStyle(.init(lineWidth: 4))
+                .interpolationMethod(.cardinal)
+            }
+        }
+        .frame(width: 350, height: 210)
+        .chartYAxisLabel {
+            Label("Ingresos", systemImage: "dollarsign")
+        }
+    }
     
 }
 
 struct Previews_FinanzasView_Previews: PreviewProvider {
     static var previews: some View {
         FinanzasView()
+            .environmentObject(AuthViewModel())
     }
 }

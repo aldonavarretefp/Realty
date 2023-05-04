@@ -44,10 +44,11 @@ struct EditPropertyView: View {
                 }
                 
                 Section(content: {
-                    NavigationLink("Información de inquilino/huésped", destination: {NewTenantView(tenantName: $tenant.name)})
-                        .onChange(of: tenant) { newValue in
-                            property.tenant = newValue
-                        }
+                    TextField("Inserte nombre", text: $tenant.name)
+                        .onChange(of: tenant.name, perform: { newValue in
+                            isSubmitButtonDisabled = tenant.name.isEmpty ? true : false
+                            property.tenant = tenant
+                        })
                 }, header: {
                     Text("Inquilino")
                 }, footer: {
@@ -58,16 +59,14 @@ struct EditPropertyView: View {
                     TextField("Area", value: $property.area, format: .number)
                         .keyboardType(.decimalPad)
                 }
-                Button(role: .destructive, action: {deleteProperty(property: property)}) {
+                
+                Button(role: .destructive) {
+                    isPresentingConfirm.toggle()
+                } label: {
                     Label("Borrar", systemImage: "trash")
                         .foregroundColor(.red)
                 }
-                .confirmationDialog("¿Está seguro de borrar la propiedad?",
-                                    isPresented: $isPresentingConfirm) {
-                    Button(role: .destructive, action: {deleteProperty(property: property)}) {
-                        Label("Borrar", systemImage: "trash")
-                    }
-                }
+
             }
             if isLoading {
                 ProgressView()
@@ -93,12 +92,19 @@ struct EditPropertyView: View {
                 }
                 .disabled(isSubmitButtonDisabled)
             }
-            
+
         }
         .navigationTitle(property.title)
+        .confirmationDialog("¿Está seguro de borrar la propiedad?", isPresented: $isPresentingConfirm) {
+            Button(role: .destructive) {
+                deleteProperty()
+            } label: {
+                Label("Borrar", systemImage: "trash")
+            }
+        }
     }
     
-    func deleteProperty(property: Property) -> Void {
+    func deleteProperty() -> Void {
         isLoading = true
         authModel.deleteProperty(property: property)
         isHomeActive = false

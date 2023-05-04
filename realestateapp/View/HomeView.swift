@@ -16,30 +16,14 @@ struct HomeView: View {
     
     var body: some View {
         NavigationView {
-            ScrollView(showsIndicators: false) {
+            ScrollView {
                 if let properties = authModel.userProperties {
-                    
-                    if properties.isEmpty {
-                        VStack(alignment: .center) {
-                            HStack(alignment: .center) {
-                                Text("Oh, it seems that you do not have any property yet, tap on the \(Image(systemName: "plus")) button to create one!")
-                            }
+                    ForEach(properties) { prop in
+                        NavigationLink(destination: PropertyDetailView(property: prop, isHomeActive: $isHomeActive)) {
+                            PropertyView(imgName: prop.imgName ?? "casa2", propertyTitle: prop.title, propertyAddr: prop.address)
                         }
-                        .frame(
-                            minHeight: 0,
-                            maxHeight: .infinity
-                        )
-                    } else {
-                        ForEach(properties) { prop in
-                            NavigationLink(destination: PropertyDetailView(property: prop, isHomeActive: $isHomeActive), isActive: $isHomeActive) {
-                                PropertyView(imgName: prop.imgName ?? "casa2", propertyTitle: prop.title, propertyAddr: prop.address)
-                            }
-                            .padding(.bottom, 10)
-                        }
+                        .padding(.bottom, 10)
                     }
-                } else {
-                    ProgressView()
-                        .progressViewStyle(.circular)
                 }
             }
             .navigationTitle("Tus propiedades")
@@ -64,6 +48,25 @@ struct HomeView: View {
                 NewPropertyView()
             }
             .onAppear(perform: loadProperties)
+            .refreshable {
+                loadProperties()
+            }
+            .scrollIndicators(.hidden)
+            .frame(
+                maxWidth: .infinity,
+                maxHeight: .infinity
+            )
+            .overlay {
+                if let properties = authModel.userProperties {
+                    if properties.isEmpty {
+                        Text("Oh, parece que no tienes ninguna propiedad ¡toca el botón \(Image(systemName: "plus")) para crear una ahora!")
+                    }
+                } else {
+                    ProgressView()
+                        .progressViewStyle(.circular)
+                }
+                
+            }
         }
         .navigationViewStyle(StackNavigationViewStyle())
 
@@ -74,4 +77,11 @@ struct HomeView: View {
         authModel.fetchProperties()
     }
     
+}
+
+struct Previews_HomeView_Previews: PreviewProvider {
+    static var previews: some View {
+        HomeView()
+            .environmentObject(AuthViewModel())
+    }
 }
