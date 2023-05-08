@@ -64,7 +64,7 @@ struct LoginView: View {
                 authModel.login(withEmail: email, password: password)
             } label: {
                 Text("Ingresa")
-                    .frame(maxWidth: .infinity,maxHeight: 50)
+                    .frame(maxWidth: .infinity,minHeight: 50, maxHeight: 50)
                     .background(Color(.systemBlue))
                     .foregroundColor(.white)
                     .cornerRadius(14)

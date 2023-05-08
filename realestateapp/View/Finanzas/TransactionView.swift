@@ -30,13 +30,13 @@ struct TransactionViewRow: View {
     let transaction: Transaction
     @State private var showSheet: Bool = false
     var body: some View {
-        HStack(spacing: 10) {
+        HStack(spacing: 30) {
             Text("name")
                 .font(.subheadline)
                 .fontWeight(.bold)
                 .foregroundColor(Color("primary"))
                 .lineLimit(2)
-                .frame(width: 100, alignment: .leading)
+                .frame(width: 100, alignment: .center)
             VStack {
                 Text("\(transaction.date.getMonthLocalizedString.capitalized)")
                     .font(.subheadline)
@@ -47,38 +47,17 @@ struct TransactionViewRow: View {
                     .bold()
                     .foregroundColor(.blue)
             }
-            .frame(width: 50, alignment: .leading)
-//            Text(transaction.date.localizedString)
-//                .font(.subheadline)
-//                .fontWeight(.bold)
-//                .foregroundColor(Color("primary"))
-//                .lineLimit(2)
-//                .frame(width: 100, alignment: .leading)
+            .frame(width: 50, alignment: .center)
             Text("+\(transaction.income, specifier: "%.2f")")
                 .font(.callout)
                 .fontWeight(.bold)
                 .foregroundColor(Color(#colorLiteral(red: 0.2, green: 0.78, blue: 0.35, alpha: 1)))
-                .frame(width: 90, alignment: .leading)
-            Button(action: {
-                showSheet.toggle()
-            }, label: {
-                Image(systemName: "plus")
-                    .colorInvert()
-                    .foregroundColor(Color("primaryInvert"))
-                    .font(.system(size: 30))
-                    .bold()
-            })
-            .padding(.trailing, 5)
-            .sheet(isPresented: $showSheet){
-//                ExpandedTenantView()
-//                    .presentationDetents([.fraction(0.80), .large])
-            }
+                .frame(width: 100, alignment: .center)
         }
         .frame(
-            minWidth: 0,
-            maxWidth: 380,
+            maxWidth: 320,
             minHeight: 60,
-            maxHeight: 80
+            maxHeight: 90
         )
         .background(Color("primaryInvert"))
         .cornerRadius(10)
@@ -89,6 +68,6 @@ struct TransactionViewRow: View {
 
 struct Previews_TransactionViewRow_Previews: PreviewProvider {
     static var previews: some View {
-        TransactionView([])
+        TransactionView([.init(date: .now, income: 213.2, tenantId: "12213")])
     }
 }

@@ -25,7 +25,6 @@ struct PropertyDetailView: View {
     var area: Double {
         return property.area
     }
-    
     private let adaptiveCol = [
         GridItem(.flexible()),
         GridItem(.flexible()),
@@ -45,9 +44,7 @@ struct PropertyDetailView: View {
                     .isDetailLink(false)
             }
         }
-        .navigationBarTitleDisplayMode(.inline)
-//        .toolbarBackground(.visible, for: .navigationBar)
-        .toolbarColorScheme(.dark, for: .navigationBar)
+        .toolbarBackground(.hidden, for: .navigationBar)
     }
     
 }
@@ -153,6 +150,7 @@ extension PropertyDetailView {
                 Text("Dirección")
                     .font(.caption)
                     .padding(.bottom, 1)
+                    .foregroundColor(Color("primaryInvert"))
                 Text(property.address)
                     .font(.headline)
                     .foregroundColor(Color(.systemBlue))

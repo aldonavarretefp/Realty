@@ -11,51 +11,72 @@ import WebKit
 
 struct ContractView: View {
     
-    private var tenantName: String
-    
-    private var url: URL = URL(fileURLWithPath: Bundle.main.path(forResource: "pr-sample-contract", ofType: "pdf")!)
-    var guestName: String? = "Alejandro"
+    let tenant: Tenant
     
     var body: some View {
         NavigationView {
-            PDFView(request: openPDF(name: "pr-sample-contract"))
-                .navigationTitle("Contrato de \(tenantName)")
-                .navigationBarTitleDisplayMode(.inline)
-                .toolbar {
-                    ToolbarItem(placement: .confirmationAction) {
-                        ShareLink("Compartir", item: url, subject: Text("Contrato"), message: Text("Contrato"))
-                            .foregroundColor(.blue)
+            if let contractUrlString = tenant.contractUrl {
+                let contractUrl: URL = URL(string: contractUrlString)!
+                PDFView(request: openPDF(withUrl: contractUrlString) )
+                    .navigationTitle("Contrato de \(tenant.name)")
+                    .navigationBarTitleDisplayMode(.inline)
+                    .toolbar {
+                        ToolbarItem(placement: .confirmationAction) {
+                            ShareLink(item: contractUrl)
+                                .foregroundColor(.blue)
+                        }
                     }
-                }
+            } else {
+                Text("Oh, parece que \(tenant.name) no tiene un contrato aún, prueba subiendo uno.")
+                    .padding()
+            }
+            
         }
     }
-    
-    init(withTenantName name:String) {
-        self.tenantName = name
-    }
-    
-    func openPDF(name: String) -> URLRequest {
-        let path = Bundle.main.path(forResource: name, ofType: "pdf")
-        let url = URL(fileURLWithPath: path!)
-        return URLRequest(url: url)
+
+    func openPDF(withUrl url: String) -> URLRequest {
+        let url = URL(string: url)
+        return URLRequest(url: url!)
     }
 
 }
 
 struct PDFView: UIViewRepresentable {
     
+    func makeCoordinator() -> Coordinator {
+        return Coordinator(self)
+    }
+    
     let request: URLRequest
     
-    func updateUIView(_ uiView: WKWebView, context: Context) {
-        uiView.load(request)
+    func updateUIView(_ webView: WKWebView, context: Context) {
+        let request = URLRequest(url: self.request.url!, cachePolicy: .returnCacheDataElseLoad, timeoutInterval: .leastNormalMagnitude)
+        
+        webView.load(request)
     }
     func makeUIView(context: Context) -> WKWebView {
-        return WKWebView()
+        let webview = WKWebView()
+        let request = URLRequest(url: self.request.url!, cachePolicy: .returnCacheDataElseLoad)
+        webview.load(request)
+        return webview
+    }
+    
+    class Coordinator: NSObject, WKUIDelegate, WKNavigationDelegate {
+        
+        let parent: PDFView
+        
+        init(_ parent: PDFView) {
+            self.parent = parent
+        }
+        
+        
     }
 }
 
+
+
 struct Previews_ContractView_Previews: PreviewProvider {
     static var previews: some View {
-        ContractView(withTenantName: "Aldo")
+        ContractView(tenant: .init(name: "José"))
     }
 }

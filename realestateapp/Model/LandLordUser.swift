@@ -20,6 +20,7 @@ struct LandLordUser: Codable, Identifiable {
         case lastName = "lastname"
         case name
         case email
+        case profileImageUrl
       }
     
     

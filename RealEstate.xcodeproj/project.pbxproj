@@ -24,7 +24,7 @@
 		F73D187429B6E95100F4D2D4 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = F73D187329B6E95100F4D2D4 /* FirebaseFirestore */; };
 		F73D187629B6E95100F4D2D4 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = F73D187529B6E95100F4D2D4 /* FirebaseStorage */; };
 		F73D187829B6F20500F4D2D4 /* FetcherService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F73D187729B6F20500F4D2D4 /* FetcherService.swift */; };
-		F74F1768295618B90044F7AF /* AjustesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F74F1767295618B90044F7AF /* AjustesView.swift */; };
+		F74F1768295618B90044F7AF /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F74F1767295618B90044F7AF /* SettingsView.swift */; };
 		F74F470F29565E840012CCF5 /* Tenant.swift in Sources */ = {isa = PBXBuildFile; fileRef = F74F470E29565E840012CCF5 /* Tenant.swift */; };
 		F74F4711295660620012CCF5 /* LandLordUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = F74F4710295660620012CCF5 /* LandLordUser.swift */; };
 		F74F4713295661750012CCF5 /* Property.swift in Sources */ = {isa = PBXBuildFile; fileRef = F74F4712295661750012CCF5 /* Property.swift */; };
@@ -37,6 +37,8 @@
 		F79BF93829B039550083AF3C /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F79BF93729B039550083AF3C /* LoginView.swift */; };
 		F7BC115029B682E300C65173 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7BC114F29B682E300C65173 /* ImagePicker.swift */; };
 		F7BC115329B686CB00C65173 /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7BC115229B686CB00C65173 /* View.swift */; };
+		F7C4423D2A02ECDB00D3B934 /* DocumentPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7C4423C2A02ECDB00D3B934 /* DocumentPicker.swift */; };
+		F7C4423F2A031A0200D3B934 /* DocumentUploader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7C4423E2A031A0200D3B934 /* DocumentUploader.swift */; };
 		F7D8DAA1295640070096A811 /* ContractView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7D8DAA0295640070096A811 /* ContractView.swift */; };
 		F7D983C029BA836300C334FC /* SelectProfilePhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7D983BF29BA836300C334FC /* SelectProfilePhotoView.swift */; };
 		F7DB242129B6E610009040C1 /* ImageUploader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7DB242029B6E610009040C1 /* ImageUploader.swift */; };
@@ -47,6 +49,7 @@
 		F7E2FD0829EDA780005F4717 /* Double.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7E2FD0729EDA780005F4717 /* Double.swift */; };
 		F7E2FD0A29EDBE36005F4717 /* Calendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7E2FD0929EDBE36005F4717 /* Calendar.swift */; };
 		F7ECA33D29E8A8C500191C9D /* NewPropertyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7ECA33C29E8A8C500191C9D /* NewPropertyView.swift */; };
+		F7FFDFB62A098CB30065B44A /* NewTransactionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7FFDFB52A098CB30065B44A /* NewTransactionView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -63,7 +66,7 @@
 		F737B5D329527A170064ACCE /* PropertyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PropertyView.swift; path = realestateapp/View/Property/PropertyView.swift; sourceTree = SOURCE_ROOT; };
 		F737B5D5295338600064ACCE /* FinanzasView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FinanzasView.swift; path = realestateapp/View/Finanzas/FinanzasView.swift; sourceTree = SOURCE_ROOT; };
 		F73D187729B6F20500F4D2D4 /* FetcherService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetcherService.swift; sourceTree = "<group>"; };
-		F74F1767295618B90044F7AF /* AjustesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AjustesView.swift; sourceTree = "<group>"; };
+		F74F1767295618B90044F7AF /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		F74F470E29565E840012CCF5 /* Tenant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tenant.swift; sourceTree = "<group>"; };
 		F74F4710295660620012CCF5 /* LandLordUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandLordUser.swift; sourceTree = "<group>"; };
 		F74F4712295661750012CCF5 /* Property.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Property.swift; sourceTree = "<group>"; };
@@ -77,6 +80,8 @@
 		F79BF93729B039550083AF3C /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		F7BC114F29B682E300C65173 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		F7BC115229B686CB00C65173 /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
+		F7C4423C2A02ECDB00D3B934 /* DocumentPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentPicker.swift; sourceTree = "<group>"; };
+		F7C4423E2A031A0200D3B934 /* DocumentUploader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentUploader.swift; sourceTree = "<group>"; };
 		F7D8DAA0295640070096A811 /* ContractView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContractView.swift; sourceTree = "<group>"; };
 		F7D983BF29BA836300C334FC /* SelectProfilePhotoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectProfilePhotoView.swift; sourceTree = "<group>"; };
 		F7DB242029B6E610009040C1 /* ImageUploader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageUploader.swift; sourceTree = "<group>"; };
@@ -87,6 +92,7 @@
 		F7E2FD0729EDA780005F4717 /* Double.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Double.swift; sourceTree = "<group>"; };
 		F7E2FD0929EDBE36005F4717 /* Calendar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Calendar.swift; sourceTree = "<group>"; };
 		F7ECA33C29E8A8C500191C9D /* NewPropertyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPropertyView.swift; sourceTree = "<group>"; };
+		F7FFDFB52A098CB30065B44A /* NewTransactionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTransactionView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,6 +116,7 @@
 			children = (
 				F737B5D5295338600064ACCE /* FinanzasView.swift */,
 				F72123B929537D9300F1EE26 /* TransactionView.swift */,
+				F7FFDFB52A098CB30065B44A /* NewTransactionView.swift */,
 			);
 			path = Finanzas;
 			sourceTree = "<group>";
@@ -195,6 +202,7 @@
 			isa = PBXGroup;
 			children = (
 				F7BC114F29B682E300C65173 /* ImagePicker.swift */,
+				F7C4423C2A02ECDB00D3B934 /* DocumentPicker.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -233,6 +241,7 @@
 			children = (
 				F7DB242029B6E610009040C1 /* ImageUploader.swift */,
 				F73D187729B6F20500F4D2D4 /* FetcherService.swift */,
+				F7C4423E2A031A0200D3B934 /* DocumentUploader.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -267,7 +276,7 @@
 				F7D983BE29BA833600C334FC /* Auth */,
 				F71B5AAF29E482A500F0C8E3 /* Finanzas */,
 				F7ECA33B29E8A8B700191C9D /* Property */,
-				F74F1767295618B90044F7AF /* AjustesView.swift */,
+				F74F1767295618B90044F7AF /* SettingsView.swift */,
 				F7D8DAA0295640070096A811 /* ContractView.swift */,
 			);
 			path = View;
@@ -370,6 +379,7 @@
 			files = (
 				F762001329F83A39003FC0B5 /* NewTenantView.swift in Sources */,
 				F72123BE29538C8D00F1EE26 /* PropertyDetailView.swift in Sources */,
+				F7C4423F2A031A0200D3B934 /* DocumentUploader.swift in Sources */,
 				F74F4711295660620012CCF5 /* LandLordUser.swift in Sources */,
 				F74F470F29565E840012CCF5 /* Tenant.swift in Sources */,
 				F7E2FD0229EC6FE2005F4717 /* EditPropertyView.swift in Sources */,
@@ -378,8 +388,9 @@
 				F737B5D229526DEF0064ACCE /* HomeView.swift in Sources */,
 				F7D8DAA1295640070096A811 /* ContractView.swift in Sources */,
 				F7BC115329B686CB00C65173 /* View.swift in Sources */,
-				F74F1768295618B90044F7AF /* AjustesView.swift in Sources */,
+				F74F1768295618B90044F7AF /* SettingsView.swift in Sources */,
 				F74F4713295661750012CCF5 /* Property.swift in Sources */,
+				F7C4423D2A02ECDB00D3B934 /* DocumentPicker.swift in Sources */,
 				F737B5D429527A170064ACCE /* PropertyView.swift in Sources */,
 				F7769F9F29B3B9C900B8518F /* RegisterView.swift in Sources */,
 				F762001529F87C0B003FC0B5 /* Transaction.swift in Sources */,
@@ -396,6 +407,7 @@
 				F7E2FD0629ED1298005F4717 /* Date.swift in Sources */,
 				F7D983C029BA836300C334FC /* SelectProfilePhotoView.swift in Sources */,
 				F72123BC295387BE00F1EE26 /* ExpandedTenantView.swift in Sources */,
+				F7FFDFB62A098CB30065B44A /* NewTransactionView.swift in Sources */,
 				F774DDE029F8CAD400824389 /* TenantRowView.swift in Sources */,
 				F7E2AAB229E5CC98006FD55F /* LaunchScreenView.swift in Sources */,
 				F7E2FD0829EDA780005F4717 /* Double.swift in Sources */,

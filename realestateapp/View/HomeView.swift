@@ -40,7 +40,6 @@ struct HomeView: View {
                         Image(systemName: "plus")
                             .rotationEffect(.init(degrees: 90))
                             .scaleEffect(0.8)
-                            .tint(.accentColor)
                     }
                 }
             }
@@ -60,6 +59,7 @@ struct HomeView: View {
                 if let properties = authModel.userProperties {
                     if properties.isEmpty {
                         Text("Oh, parece que no tienes ninguna propiedad ¡toca el botón \(Image(systemName: "plus")) para crear una ahora!")
+                            .padding()
                     }
                 } else {
                     ProgressView()
@@ -69,7 +69,6 @@ struct HomeView: View {
             }
         }
         .navigationViewStyle(StackNavigationViewStyle())
-
         
     }
     

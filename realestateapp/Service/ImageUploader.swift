@@ -10,10 +10,10 @@ import UIKit
 
 struct ImageUploader {
     
-    static func uploadImage(image: UIImage, completion: @escaping(String) -> () ) {
+    static func uploadImage(image: UIImage, withId id: String, completion: @escaping(String) -> () ) {
         guard let imageData = image.jpegData(compressionQuality: 0.3) else { return }
         
-        let filename = NSUUID().uuidString
+        let filename = id
         let ref = Storage.storage().reference(withPath: "/profile_image/\(filename)")
         
         ref.putData(imageData, metadata: nil) {_, error in

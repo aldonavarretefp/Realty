@@ -7,8 +7,13 @@
 
 import Firebase
 
+enum UserServiceError: Error {
+    case noUserFound
+}
+
 struct UserService {
-    func fetchUser(withUid uid: String, completion: @escaping((LandLordUser) -> (Void))) {
+    
+    func fetchUser(withUid uid: String, completion: @escaping((Result<LandLordUser, UserServiceError>) -> (Void))) {
         let docRef = Firestore.firestore().collection("users").document(uid)
         docRef.getDocument { (snapshot, error) in
             if let document = snapshot, document.exists {
@@ -17,9 +22,9 @@ struct UserService {
                     return
                 }
                 print("DEBUG user is: ", user)
-                completion(user)
+                completion(.success(user))
             } else {
-                print("Document does not exist")
+                completion(.failure(.noUserFound))
             }
         }
     }

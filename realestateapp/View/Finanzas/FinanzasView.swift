@@ -20,30 +20,6 @@ struct FinanzasView: View {
     @State private var isSheetShowing: Bool = false
     
     @State private var transactions: [Transaction] = []
-    /*
-    @State var monthEarns: [Transaction] = [
-        .init(date: Date.from(day: 12, month: 4, year: 2022), income: 5900.2, tenant: .init(name: "Aldo")),
-        .init(date: Date.from(day: 23, month: 4, year: 2022), income: 7100.3, tenant: .init(name: "Guero")),
-        .init(date: Date.from(day: 4, month: 5, year: 2022), income: 4800.4, tenant: .init(name: "Luis")),
-        .init(date: Date.from(day: 16, month: 5, year: 2022), income: 6200.5, tenant: .init(name: "Pato")),
-        .init(date: Date.from(day: 27, month: 5, year: 2022), income: 7400.6, tenant: .init(name: "Miguel")),
-        .init(date: Date.from(day: 8, month: 6, year: 2022), income: 5700.7, tenant: .init(name: "Sara")),
-        .init(date: Date.from(day: 19, month: 6, year: 2022), income: 6900.8, tenant: .init(name: "David")),
-        .init(date: Date.from(day: 29, month: 6, year: 2022), income: 8200.9, tenant: .init(name: "Prototype Name")),
-        .init(date: Date.from(day: 7, month: 7, year: 2022), income: 5100.0, tenant: .init(name: "Jesus")),
-        .init(date: Date.from(day: 18, month: 9, year: 2022), income: 6500.1, tenant: .init(name: "Ricardo")),
-        .init(date: Date.from(day: 5, month: 1, year: 2023), income: 3000.4, tenant: .init(name: "Ernesto")),
-        .init(date: Date.from(day: 15, month: 1, year: 2023), income: 4500.2, tenant: .init(name: "Prototype Name")),
-        .init(date: Date.from(day: 21, month: 1, year: 2023), income: 6000.0, tenant: .init(name: "Daniel")),
-        .init(date: Date.from(day: 7, month: 2, year: 2023), income: 5500.1, tenant: .init(name: "Alejandro")),
-        .init(date: Date.from(day: 17, month: 2, year: 2023), income: 6700.3, tenant: .init(name: "Prototype Name")),
-        .init(date: Date.from(day: 25, month: 2, year: 2023), income: 7200.4, tenant: .init(name: "Prototype Name")),
-        .init(date: Date.from(day: 3, month: 3, year: 2023), income: 5100.5, tenant: .init(name: "Prototype Name")),
-        .init(date: Date.from(day: 10, month: 3, year: 2023), income: 6500.6, tenant: .init(name: "Prototype Name")),
-        .init(date: Date.from(day: 20, month: 3, year: 2023), income: 7800.8, tenant: .init(name: "Prototype Name")),
-        .init(date: Date.from(day: 5, month: 4, year: 2023), income: 4300.0, tenant: .init(name: "Prototype Name")),
-    ]
-     */
     @State private var transactionsFilteredArr: [Transaction] = []
     @State private var selectedTime: Time = .custom
     @State private var chartUnitXAxis: Calendar.Component = .month
@@ -92,7 +68,7 @@ struct FinanzasView: View {
             .onChange(of: untilDate, perform: filterDataUntil)
             .onAppear(perform: loadTransactions)
             .navigationBarTitle("Tus finanzas")
-            .toolbar{
+            .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button(action: {
                         isSheetShowing.toggle()
@@ -105,7 +81,7 @@ struct FinanzasView: View {
                 NewTransactionView(transactions: $transactions)
             }
             .overlay {
-                if transactions.isEmpty {
+                if transactionsFilteredArr.isEmpty {
                     Text("Ups, parece que no has tenido ninguna transacción.")
                 }
             }
@@ -135,7 +111,6 @@ struct FinanzasView: View {
             guard let aYearAgo = todayCalendar.date(byAdding: .year, value: -1, to: Date()) else { return }
             fromDate = aYearAgo
             untilDate = today
-            print(transactionsFilteredArr.debugDescription)
             chartUnitXAxis = .month
         case .custom:
             chartUnitXAxis = .month
@@ -162,50 +137,7 @@ struct FinanzasView: View {
         filterDataUntil(Date.now)
         authModel.fetchTransactions({ transactions in
             self.transactions = transactions
-            print(transactions)
         })
-    }
-}
-
-struct NewTransactionView: View {
-    
-    @EnvironmentObject private var authModel: AuthViewModel
-    
-    @Environment(\.presentationMode) var presentationMode
-    @Binding var transactions: [Transaction]
-
-    @State private var transactionTenantName: String = ""
-    @State private var transactionAmount: Double = 0.0
-    @State private var transactionDate: Date = Date.now
-    
-    var body: some View {
-        NavigationView {
-            Form {
-                TextField("Nombre", text: $transactionTenantName)
-                TextField("Cantidad", value: $transactionAmount, format: .number)
-                    .keyboardType(.decimalPad)
-                DatePicker("Fecha", selection: $transactionDate, displayedComponents: .date)
-                    .datePickerStyle(.compact)
-            }
-                .navigationTitle("Nueva transacción")
-                .toolbar{
-                    ToolbarItem(placement: .navigationBarTrailing) {
-                        Button("Agregar") {
-                            // Nueva transaccion
-                            Task {
-                                await uploadTransaction()
-                            }
-                        }
-                    }
-                }
-                
-        }
-    }
-    private func uploadTransaction() async {
-        let newTransaction:Transaction = Transaction(date: transactionDate, income: transactionAmount, tenantId: "")
-//        monthEarns.append(newTransaction)
-        await authModel.uploadTransaction(transaction: newTransaction)
-        presentationMode.wrappedValue.dismiss()
     }
 }
 

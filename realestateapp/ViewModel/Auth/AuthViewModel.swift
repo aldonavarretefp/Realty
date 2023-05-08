@@ -9,6 +9,7 @@ import Foundation
 import SwiftUI
 import FirebaseAuth
 import FirebaseFirestore
+import FirebaseStorage
 
 class AuthViewModel: ObservableObject {
     @Published var userSession: FirebaseAuth.User?
@@ -70,6 +71,7 @@ class AuthViewModel: ObservableObject {
     func logOut() {
         try? Auth.auth().signOut()
         userSession = nil
+        tempUserSession = nil
     }
     
     //MARK: - Update
@@ -82,15 +84,20 @@ class AuthViewModel: ObservableObject {
         let docRef = Firestore.firestore().collection("users").document(uid)
         
         let lastName: String? = fullNameArr.count > 1 ? fullNameArr[1] : nil
+        
         if let lastName {
             docRef
                 .updateData(["lastname": lastName])
+            self.currentLandlord?.lastName = lastName
         }
        
         let name = fullNameArr[0] as String
         
         docRef
             .updateData(["name": name])
+        
+        self.currentLandlord?.name = name
+        
     }
     
     func updateProperty(property: Property) -> Void {
@@ -100,9 +107,12 @@ class AuthViewModel: ObservableObject {
         
         docRef.updateData([
             "address": property.address,
-            "area": property.area as Any,
-            "noRooms": property.noRooms as Any,
-            "name": property.title
+            "area": property.area,
+            "noRooms": property.noRooms,
+            "name": property.title,
+            "tenant": [
+                "name": property.tenant?.name
+            ]
         ]) { err in
             if let err = err {
                 print("DEBUG Error writing document: \(err)")
@@ -127,14 +137,69 @@ class AuthViewModel: ObservableObject {
         }
     }
     
+    func deleteUser() async -> Void {
+        guard let uid = userSession?.uid else { return }
+        // Delete properties documents and storage
+        let propertiesIds = userProperties?.compactMap({ $0.id })
+        let db = Firestore.firestore()
+        propertiesIds?.forEach({ propertyId in
+            db.collection("properties").document(propertyId).delete() { err in
+                if let err = err {
+                    print("Error removing document: \(err)")
+                } else {
+                    print("Document successfully removed!")
+                }
+            }
+            let storageRef = Storage.storage().reference().child(propertyId)
+            storageRef.delete { error in
+                if let error {
+                    print("DEBUG error while deleting folder: \(error.localizedDescription)")
+                }
+            }
+        })
+        // Delete user
+        do {
+            try await db.collection("users").document(uid).delete()
+        } catch {
+            print("DEBUG error while removing user \(error.localizedDescription)")
+        }
+        
+        
+        
+    }
+    
     //MARK: - upload To Firebase
     
     func uploadProfileImage(_ image: UIImage) {
         guard let uid = userSession?.uid else { return }
-        ImageUploader.uploadImage(image: image) { profileImageUrl in
+        ImageUploader.uploadImage(image: image, withId: uid) { profileImageUrl in
             Firestore.firestore().collection("users")
                 .document(uid)
                 .updateData(["profileImageUrl": profileImageUrl])
+            self.currentLandlord?.profileImageUrl = profileImageUrl
+        }
+    }
+    
+    func uploadContract(_ url: URL?, tenant: Tenant) {
+        guard let tenantId = tenant.id else {
+            print("DEBUG tenantId does not exists.")
+            return
+        }
+        DocumentUploader.uploadDocument(withDocUrl: url, forTenant: tenant) { url in
+            let docRef = Firestore.firestore().collection("properties").document(tenantId)
+            docRef.updateData([
+                "tenant": [
+                    "name": tenant.name,
+                    "contractUrl": url
+                ]
+            ]) { err in
+                if let err = err {
+                    print("DEBUG Error writing document: \(err)")
+                    return
+                }
+                print("DEBUG Contract successfully updated!")
+            
+            }
         }
     }
     
@@ -143,9 +208,9 @@ class AuthViewModel: ObservableObject {
         let docRef = Firestore.firestore().collection("properties")
         docRef.addDocument(data: [
                 "name": property.title,
-                "noRooms": property.noRooms ?? 0,
+                "noRooms": property.noRooms ,
                 "address": property.address,
-                "area": property.area ?? 0.0,
+                "area": property.area ,
                 "landlord": uid,
                 "tenant": [
                     "name": property.tenant?.name
@@ -154,7 +219,7 @@ class AuthViewModel: ObservableObject {
                 if let err = err {
                     print("DEBUG Error writing document: \(err)")
                 } else {
-                    print("DEBUG Document successfully updated!")
+                    print("DEBUG Property successfully uploaded!")
                 }
             }
         
@@ -170,19 +235,25 @@ class AuthViewModel: ObservableObject {
         ]) { err in
             if let err = err {
                 print("DEBUG Error writing document: \(err)")
-            } else {
-                print("DEBUG Document successfully updated!")
-            }
+                return
+            } 
+            print("DEBUG transaction successfully updated!")
         }
     }
-    
     
     //MARK: - fetching data
     
     func fetchUser() {
         guard let uid = self.userSession?.uid else { return }
-        userService.fetchUser(withUid: uid) { user in
-            self.currentLandlord = user
+        userService.fetchUser(withUid: uid) { result in
+            switch result {
+            case .success(let user):
+                self.currentLandlord = user
+            case .failure(let error):
+                self.userSession = nil
+                print("DEBUG Error: \(error.localizedDescription)")
+            }
+            
         }
     }
     

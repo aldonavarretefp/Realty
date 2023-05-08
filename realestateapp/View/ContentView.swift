@@ -26,18 +26,17 @@ struct ContentView: View {
                             Text("Finanzas")
                             Image(systemName: "chart.bar")
                         }
-                    AjustesView()
+                    SettingsView()
                         .tabItem {
                             Text("Ajustes")
                             Image(systemName: "gear")
                         }
                 }
-            }
-            else {
+                .accentColor(Color.pink)
+            } else {
                 LoginView()
             }
         }
-        .animation(.default, value: true)
     }
 
 }

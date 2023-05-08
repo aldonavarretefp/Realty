@@ -10,7 +10,9 @@ import Kingfisher
 
 struct ExpandedTenantView: View {
     
-    private var tenant: Tenant = .init(id: UUID().uuidString, name: "Doris", middleName: "Gray", lastName: "Gorczany", secondLastName: "Donnelly", startDate: Date.from(day: 12, month: 05, year: 2022), endDate: Date.from(day: 30, month: 04, year: 2023), paymentDOTM: 2, contract: URL(fileURLWithPath: "pr-sample-contract"))
+    let tenant: Tenant
+    
+//    private var tenant: Tenant = .init(id: UUID().uuidString, name: "Doris", middleName: "Gray", lastName: "Gorczany", secondLastName: "Donnelly", startDate: Date.from(day: 12, month: 05, year: 2022), endDate: Date.from(day: 30, month: 04, year: 2023), contract: URL(fileURLWithPath: "pr-sample-contract"))
     
     private var guestName: String { tenant.name }
     private var startDate: Date {
@@ -27,12 +29,7 @@ struct ExpandedTenantView: View {
     }
     
     @State private var showPDFSheet: Bool = false
-    
-    public var tenantL: Tenant
-    
-    init(tenantLim: Tenant){
-        self.tenantL = tenantLim
-    }
+    @State private var showDocumentPicker: Bool = false
     
     var body: some View {
         ScrollView {
@@ -47,45 +44,38 @@ struct ExpandedTenantView: View {
                         maxHeight: 400
                     )
                     .clipped()
-                Text(tenantL.name)
+                Text(tenant.name)
                     .font(.system(size: 40))
                     .fontWeight(.bold)
                     .padding(.leading, 20)
                 DateInfoView(startDate: startDate, endDate: endDate)
                 VStack(alignment: .center) {
-                    HStack(spacing: 40) {
-                        Button("Ver contrato"){
+                    HStack(spacing: 90) {
+                        Button("Ver contrato") {
                             showPDFSheet.toggle()
                         }
-                        .bold()
-                        .font(.callout)
-                        .padding(10)
-                        .frame(width: 120, height: 44)
-                        .foregroundColor(Color.white)
-                        .background(Color(.systemBlue))
-                        .cornerRadius(12)
-                        Button("Renovar contrato"){
+                        .actionBtnContractStyle(withColor: .blue)
+                        Button("Renovar"){
                             showPDFSheet.toggle()
                         }
-                        .bold()
-                        .lineLimit(1)
-                        .minimumScaleFactor(0.7)
-                        .font(.callout)
-                        .padding(10)
-                        .frame(width: 120, height: 44)
-                        .foregroundColor(Color.white)
-                        .background(Color(.systemGreen))
-                        .cornerRadius(12)
+                        .actionBtnContractStyle(withColor: .green)
+                    }
+                    
+                    HStack {
+                        Button("Subir"){
+                            showDocumentPicker.toggle()
+                        }
+                        .actionBtnContractStyle(withColor: .black)
+                        .foregroundColor(.blue)
                     }
                     
                     
                 }
                 .frame(
-                    minWidth: 0,
                     maxWidth: .infinity,
-                    minHeight: 120,
                     maxHeight: .infinity
                 )
+                .padding(.top, 30)
             }
         }
         .edgesIgnoringSafeArea(.top)
@@ -97,7 +87,10 @@ struct ExpandedTenantView: View {
             alignment: .topLeading
         )
         .sheet(isPresented: $showPDFSheet){
-            ContractView(withTenantName: tenant.name)
+            ContractView(tenant: tenant)
+        }
+        .sheet(isPresented: $showDocumentPicker) {
+            DocumentPicker(tenant: tenant)
         }
     }
 }
@@ -176,8 +169,31 @@ struct DateInfoView: View {
     }
 }
 
-//struct Previews_ContactoExpandidoView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        ExpandedTenantView(tenantLimited: .init(name: "Abuelo"))
-//    }
-//}
+struct ActionBtnStyle: ViewModifier {
+    let color: Color
+
+    func body(content: Content) -> some View {
+        content
+            .bold()
+            .lineLimit(1)
+            .minimumScaleFactor(0.7)
+            .font(.callout)
+            .padding(10)
+            .frame(width: 120, height: 44)
+            .foregroundColor(Color.white)
+            .background(color)
+            .cornerRadius(12)
+    }
+}
+
+extension View {
+    func actionBtnContractStyle(withColor color: Color) -> some View {
+        modifier(ActionBtnStyle(color: color))
+    }
+}
+
+struct Previews_ExpandedTenantView_Previews: PreviewProvider {
+    static var previews: some View {
+        ExpandedTenantView(tenant: Tenant(name: "NameTenant"))
+    }
+}

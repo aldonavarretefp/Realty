@@ -75,7 +75,7 @@ struct TenantRowView: View {
         .cornerRadius(10)
         .shadow(color: Color(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.5)), radius:8, x:2, y:5)
         .sheet(isPresented: $showSheet){
-            ExpandedTenantView(tenantLim: tenant)
+            ExpandedTenantView(tenant: tenant)
                 .presentationDetents([.fraction(0.80), .large])
         }
     }
