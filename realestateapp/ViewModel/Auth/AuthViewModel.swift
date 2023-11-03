@@ -251,7 +251,7 @@ class AuthViewModel: ObservableObject {
                 self.currentLandlord = user
             case .failure(let error):
                 self.userSession = nil
-                print("DEBUG Error: \(error.localizedDescription)")
+                print("DEBUG Error User NOT FOUND IN DB: \(error.localizedDescription)")
             }
             
         }

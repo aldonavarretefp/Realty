@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		F712718C296743C2007FDCB2 /* pr-sample-contract.pdf in Resources */ = {isa = PBXBuildFile; fileRef = F712718B296743C1007FDCB2 /* pr-sample-contract.pdf */; };
-		F71B5AB229E4A58200F0C8E3 /* FirebaseFirestoreSwift-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = F71B5AB129E4A58200F0C8E3 /* FirebaseFirestoreSwift-Beta */; };
 		F71B5AB529E4AA7D00F0C8E3 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = F71B5AB429E4AA7D00F0C8E3 /* Kingfisher */; };
 		F72123BA29537D9300F1EE26 /* TransactionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F72123B929537D9300F1EE26 /* TransactionView.swift */; };
 		F72123BC295387BE00F1EE26 /* ExpandedTenantView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F72123BB295387BE00F1EE26 /* ExpandedTenantView.swift */; };
@@ -101,7 +100,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				F73D187229B6E95100F4D2D4 /* FirebaseAuth in Frameworks */,
-				F71B5AB229E4A58200F0C8E3 /* FirebaseFirestoreSwift-Beta in Frameworks */,
 				F73D187429B6E95100F4D2D4 /* FirebaseFirestore in Frameworks */,
 				F73D187629B6E95100F4D2D4 /* FirebaseStorage in Frameworks */,
 				F71B5AB529E4AA7D00F0C8E3 /* Kingfisher in Frameworks */,
@@ -313,7 +311,6 @@
 				F73D187129B6E95100F4D2D4 /* FirebaseAuth */,
 				F73D187329B6E95100F4D2D4 /* FirebaseFirestore */,
 				F73D187529B6E95100F4D2D4 /* FirebaseStorage */,
-				F71B5AB129E4A58200F0C8E3 /* FirebaseFirestoreSwift-Beta */,
 				F71B5AB429E4AA7D00F0C8E3 /* Kingfisher */,
 			);
 			productName = realestateapp;
@@ -328,7 +325,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1410;
-				LastUpgradeCheck = 1410;
+				LastUpgradeCheck = 1500;
 				TargetAttributes = {
 					F737B5BF29526C6C0064ACCE = {
 						CreatedOnToolsVersion = 14.1;
@@ -421,6 +418,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -453,6 +451,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -481,6 +480,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -513,6 +513,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -548,6 +549,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreenView.swift;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -578,6 +580,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreenView.swift;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -628,17 +631,12 @@
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 8.0.0;
+				minimumVersion = 10.0.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		F71B5AB129E4A58200F0C8E3 /* FirebaseFirestoreSwift-Beta */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = F73D187029B6E95000F4D2D4 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = "FirebaseFirestoreSwift-Beta";
-		};
 		F71B5AB429E4AA7D00F0C8E3 /* Kingfisher */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = F71B5AB329E4AA7D00F0C8E3 /* XCRemoteSwiftPackageReference "Kingfisher" */;

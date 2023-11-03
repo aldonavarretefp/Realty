@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import FirebaseFirestoreSwift
+import FirebaseFirestore
 
 struct LandLordUser: Codable, Identifiable {
     @DocumentID var id: String?
@@ -22,6 +22,4 @@ struct LandLordUser: Codable, Identifiable {
         case email
         case profileImageUrl
       }
-    
-    
 }

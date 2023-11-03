@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import FirebaseFirestoreSwift
+import FirebaseFirestore
 
 struct Property: Identifiable, Codable, Equatable {
     static func == (lhs: Property, rhs: Property) -> Bool {

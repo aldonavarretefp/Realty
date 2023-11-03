@@ -3,4 +3,150 @@
    uuid = "CE24D0B9-E38A-417A-8747-8A791E219AA1"
    type = "1"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "0D2F081D-63FD-48EE-844C-E5A9940EFB59"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "realestateapp/View/Auth/LoginView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "64"
+            endingLineNumber = "64"
+            landmarkName = "body"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "44DD96CA-8206-42C2-8D6C-09C419C16A1B"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "realestateapp/ViewModel/Auth/AuthViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "34"
+            endingLineNumber = "34"
+            landmarkName = "login(withEmail:password:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "15A6D3F9-C8DC-4366-906E-93A907E241B1"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "realestateapp/ViewModel/Auth/AuthViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "249"
+            endingLineNumber = "249"
+            landmarkName = "fetchUser()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "15A6D3F9-C8DC-4366-906E-93A907E241B1 - 826a2c65e1d56864"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Result&lt;RealEstate.LandLordUser, RealEstate.UserServiceError&gt;) -&gt; () in RealEstate.AuthViewModel.fetchUser() -&gt; ()"
+                  moduleName = "RealEstate"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/navarrete/Desktop/Realty/realestateapp/ViewModel/Auth/AuthViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "250"
+                  endingLineNumber = "250"
+                  offsetFromSymbolStart = "92">
+               </Location>
+               <Location
+                  uuid = "15A6D3F9-C8DC-4366-906E-93A907E241B1 - 826a2c65e1d56864"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Result&lt;RealEstate.LandLordUser, RealEstate.UserServiceError&gt;) -&gt; () in RealEstate.AuthViewModel.fetchUser() -&gt; ()"
+                  moduleName = "RealEstate"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/navarrete/Desktop/Realty/realestateapp/ViewModel/Auth/AuthViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "250"
+                  endingLineNumber = "250"
+                  offsetFromSymbolStart = "112">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "968ECE95-4ECC-4156-9C76-10D76DBC419D"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "realestateapp/Service/FetcherService.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "19"
+            endingLineNumber = "19"
+            landmarkName = "fetchUser(withUid:completion:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "968ECE95-4ECC-4156-9C76-10D76DBC419D - 6521714fea7eac7a"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;__C.FIRDocumentSnapshot&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in RealEstate.UserService.fetchUser(withUid: Swift.String, completion: (Swift.Result&lt;RealEstate.LandLordUser, RealEstate.UserServiceError&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "RealEstate"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/navarrete/Desktop/Realty/realestateapp/Service/FetcherService.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "19"
+                  endingLineNumber = "19"
+                  offsetFromSymbolStart = "144">
+               </Location>
+               <Location
+                  uuid = "968ECE95-4ECC-4156-9C76-10D76DBC419D - 6521714fea7eac7a"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;__C.FIRDocumentSnapshot&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in RealEstate.UserService.fetchUser(withUid: Swift.String, completion: (Swift.Result&lt;RealEstate.LandLordUser, RealEstate.UserServiceError&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "RealEstate"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/navarrete/Desktop/Realty/realestateapp/Service/FetcherService.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "19"
+                  endingLineNumber = "19"
+                  offsetFromSymbolStart = "200">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "20B2503E-2CBD-40E1-836B-30DEBBE76254"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "realestateapp/Service/FetcherService.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "27"
+            endingLineNumber = "27"
+            landmarkName = "fetchUser(withUid:completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>
