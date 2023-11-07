@@ -34,8 +34,8 @@ struct PropertyDetailView: View {
         ScrollView {
             propertyImageWithInfoView
             propertyInfoGridView
-                .padding(.top, 20)
             propertyTenantsView
+            
         }
         .edgesIgnoringSafeArea(.top)
         .toolbar {
@@ -45,6 +45,10 @@ struct PropertyDetailView: View {
             }
         }
         .toolbarBackground(.hidden, for: .navigationBar)
+        .toolbarColorScheme(.light, for: .navigationBar)
+
+              .preferredColorScheme(.dark)
+        
     }
     
 }
@@ -54,6 +58,7 @@ extension PropertyDetailView {
     var propertyImageWithInfoView: some View {
         ZStack {
             propertyImgView
+            
             VStack(alignment: .leading) {
                 Text(property.title.localizedCapitalized)
                     .font(.largeTitle)
@@ -65,7 +70,8 @@ extension PropertyDetailView {
                     .foregroundColor(.white)
                     .lineLimit(2)
                 
-            }.frame(
+            }
+            .frame(
                 minWidth: 0,
                 maxWidth: .infinity,
                 minHeight: 0,
@@ -73,7 +79,9 @@ extension PropertyDetailView {
                 alignment: .bottomLeading
             )
             .padding()
+            
         }
+        
     }
     
     var propertyImgView: some View {
@@ -86,21 +94,16 @@ extension PropertyDetailView {
                 minHeight: 0,
                 maxHeight: 300
             )
-            .overlay {
-                Rectangle()
-                    .fill(LinearGradient(
-                        gradient: Gradient(stops: [
-                            .init(color: Color(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.99)), location: 0),
-                            .init(color: Color(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.8449141142)), location: 0.02083333395421505),
-                            .init(color: Color(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.7708247103)), location:  0.0572916679084301),
-                            .init(color: Color(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.5)), location: 0.2604166567325592),
-                            .init(color: Color(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.1820157285)), location: 1)
-                        ]),
-                        startPoint: UnitPoint(x: 0, y: 0),
-                        endPoint: UnitPoint(x: 0, y: 1)
-                    )
-                    )
-            }
+            .overlay(
+                LinearGradient(gradient: Gradient(colors: [
+                    .black.opacity(0.7),
+                    .black.opacity(0.5),
+                    .clear,
+                    .black.opacity(0.6)
+                ]),
+                    startPoint: .top,
+                    endPoint: .bottom)
+            )
             .clipped()
     }
     
@@ -176,6 +179,7 @@ extension PropertyDetailView {
             minHeight: 100,
             maxHeight: 200
         )
+        .padding(.top, 20)
     }
 }
 struct Previews_PropertyDetailView_Previews: PreviewProvider {

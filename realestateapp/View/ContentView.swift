@@ -15,7 +15,7 @@ struct ContentView: View {
     var body: some View {
         Group {
             if authModel.userSession != nil {
-                TabView{
+                TabView {
                     HomeView()
                         .tabItem{
                             Text("Home")
@@ -32,7 +32,6 @@ struct ContentView: View {
                             Image(systemName: "gear")
                         }
                 }
-                .accentColor(Color.pink)
             } else {
                 LoginView()
             }
