@@ -8,11 +8,6 @@
 import SwiftUI
 import Charts
 
-enum Time: String, CaseIterable, Identifiable {
-    var id: Self { self }
-    case day = "Diario", month = "Mensual", week = "Semanal", year = "Anual", custom = "Personalizado"
-}
-
 struct FinanzasView: View {
     
     @EnvironmentObject private var authModel: AuthViewModel
@@ -20,8 +15,9 @@ struct FinanzasView: View {
     @State private var isSheetShowing: Bool = false
     
     @State private var transactions: [Transaction] = []
-    @State private var transactionsFilteredArr: [Transaction] = []
-    @State private var selectedTime: Time = .custom
+    @State private var transactionsFilteredArr: [Transaction] = [
+    ]
+    @State private var selectedTime: Time = .day
     @State private var chartUnitXAxis: Calendar.Component = .month
     @State private var fromDate: Date = Calendar.current.date(byAdding: .year, value: -1, to: Date()) ?? Date() {
         willSet {
@@ -43,6 +39,10 @@ struct FinanzasView: View {
             item.income + partialResult
         }
     }
+    enum Time: String, CaseIterable, Identifiable {
+        var id: Self { self }
+        case day = "Diario", month = "Mensual", week = "Semanal", year = "Anual", custom = "Personalizado"
+    }
     
     private let columns: [GridItem] = [
         GridItem(.adaptive(minimum: 140)),
@@ -56,11 +56,14 @@ struct FinanzasView: View {
                 if selectedTime == .custom {
                     gridDatePicker
                 }
-                if !transactionsFilteredArr.isEmpty {
-                    earningChartTitle
-                    earningChartNumber
-                    earningChart
-                }
+//                if !transactionsFilteredArr.isEmpty {
+//                    earningChartTitle
+//                    earningChartNumber
+//                    ChartViewAPI()
+//                    earningChart
+//                ChartView(data: transactionsFilteredArr, chartUnitXAxis: $chartUnitXAxis)
+//                }
+                ChartViewAPI()
                 TransactionView(transactionsFilteredArr)
             }
             .onChange(of: selectedTime, perform: loadData)
@@ -80,11 +83,7 @@ struct FinanzasView: View {
             .sheet(isPresented: $isSheetShowing) {
                 NewTransactionView(transactions: $transactions)
             }
-            .overlay {
-                if transactionsFilteredArr.isEmpty {
-                    Text("Ups, parece que no has tenido ninguna transacción.")
-                }
-            }
+            .background(Color("FinanceBackground"))
         }
         .navigationViewStyle(StackNavigationViewStyle())
     }
@@ -111,9 +110,9 @@ struct FinanzasView: View {
             guard let aYearAgo = todayCalendar.date(byAdding: .year, value: -1, to: Date()) else { return }
             fromDate = aYearAgo
             untilDate = today
-            chartUnitXAxis = .month
+            chartUnitXAxis = .year
         case .custom:
-            chartUnitXAxis = .month
+            chartUnitXAxis = .year
         }
     }
     
@@ -198,30 +197,64 @@ extension FinanzasView {
             .foregroundColor(.green)
             .padding(.leading, 20)
     }
+}
+
+struct ChartView: View {
     
-    var earningChart: some View {
-        Chart {
-            ForEach(transactionsFilteredArr) {
-                BarMark (
-                    x: .value("Mes", $0.date, unit: chartUnitXAxis),
-                    y: .value("Ingresos", $0.income)
-                )
-                .foregroundStyle(Color.green.gradient)
-                .lineStyle(.init(lineWidth: 4))
-                .interpolationMethod(.cardinal)
+    var data: [Transaction]
+    
+    @Binding var chartUnitXAxis: Calendar.Component
+    
+    var body: some View {
+        VStack {
+            HStack {
+                Spacer()
+                Button(action: {}, label: {
+                    Text("Button")
+                })
             }
+            
+            Chart {
+                ForEach(data) {
+                    BarMark (
+                        x: .value("Mes", $0.date, unit: chartUnitXAxis),
+                        y: .value("Ingresos", $0.income)
+                    )
+
+                }
+            }
+            .foregroundStyle(.linearGradient(colors: [.blue, .purple], startPoint: .top, endPoint: .bottom))
+            
         }
-        .frame(width: 350, height: 210)
-        .chartYAxisLabel {
-            Label("Ingresos", systemImage: "dollarsign")
-        }
+        .frame(height: 300)
+    
+        
     }
     
+    private func calculateTotalIncome() {
+        
+    }
 }
+
 
 struct Previews_FinanzasView_Previews: PreviewProvider {
     static var previews: some View {
-        FinanzasView()
-            .environmentObject(AuthViewModel())
+        Group {
+            FinanzasView()
+                .environmentObject(AuthViewModel())
+//            ChartView(data: [
+//                .init(date: .now, income: 1000, tenantId: ""),
+//                .init(date: .now, income: 1000, tenantId: ""),
+//                .init(date: .now, income: 1000, tenantId: ""),
+//                .init(date: .now, income: 1000, tenantId: ""),
+//                .init(date: .now, income: 10, tenantId: ""),
+//
+//            ], chartUnitXAxis: .constant(.year))
+//            .frame(height: 300)
+//            .padding()
+//            .background(.gray)
+//            .clipShape(RoundedRectangle(cornerRadius: 10.0))
+        }
+        
     }
 }

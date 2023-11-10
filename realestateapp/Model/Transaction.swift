@@ -13,6 +13,7 @@ struct Transaction: Codable, Identifiable {
     var date: Date
     var income: Double
     var tenantId: String
+    var animate: Bool = false
     
     enum CodingKeys: String, CodingKey {
         case id

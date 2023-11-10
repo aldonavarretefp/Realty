@@ -27,6 +27,7 @@
 		F74F470F29565E840012CCF5 /* Tenant.swift in Sources */ = {isa = PBXBuildFile; fileRef = F74F470E29565E840012CCF5 /* Tenant.swift */; };
 		F74F4711295660620012CCF5 /* LandLordUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = F74F4710295660620012CCF5 /* LandLordUser.swift */; };
 		F74F4713295661750012CCF5 /* Property.swift in Sources */ = {isa = PBXBuildFile; fileRef = F74F4712295661750012CCF5 /* Property.swift */; };
+		F756455F2AFAD84600722688 /* ChartViewAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = F756455E2AFAD7B700722688 /* ChartViewAPI.swift */; };
 		F762001329F83A39003FC0B5 /* NewTenantView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F762001229F83A39003FC0B5 /* NewTenantView.swift */; };
 		F762001529F87C0B003FC0B5 /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = F762001429F87C0B003FC0B5 /* Transaction.swift */; };
 		F774DDE029F8CAD400824389 /* TenantRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F774DDDF29F8CAD400824389 /* TenantRowView.swift */; };
@@ -69,6 +70,7 @@
 		F74F470E29565E840012CCF5 /* Tenant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tenant.swift; sourceTree = "<group>"; };
 		F74F4710295660620012CCF5 /* LandLordUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandLordUser.swift; sourceTree = "<group>"; };
 		F74F4712295661750012CCF5 /* Property.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Property.swift; sourceTree = "<group>"; };
+		F756455E2AFAD7B700722688 /* ChartViewAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartViewAPI.swift; sourceTree = "<group>"; };
 		F762001229F83A39003FC0B5 /* NewTenantView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTenantView.swift; sourceTree = "<group>"; };
 		F762001429F87C0B003FC0B5 /* Transaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transaction.swift; sourceTree = "<group>"; };
 		F774DDDF29F8CAD400824389 /* TenantRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TenantRowView.swift; sourceTree = "<group>"; };
@@ -267,6 +269,7 @@
 		F7EE6E53295503CA006EFF35 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				F756455E2AFAD7B700722688 /* ChartViewAPI.swift */,
 				F762001129F83A28003FC0B5 /* Tenant */,
 				F737B5C529526C6C0064ACCE /* ContentView.swift */,
 				F737B5D129526DEF0064ACCE /* HomeView.swift */,
@@ -376,6 +379,7 @@
 			files = (
 				F762001329F83A39003FC0B5 /* NewTenantView.swift in Sources */,
 				F72123BE29538C8D00F1EE26 /* PropertyDetailView.swift in Sources */,
+				F756455F2AFAD84600722688 /* ChartViewAPI.swift in Sources */,
 				F7C4423F2A031A0200D3B934 /* DocumentUploader.swift in Sources */,
 				F74F4711295660620012CCF5 /* LandLordUser.swift in Sources */,
 				F74F470F29565E840012CCF5 /* Tenant.swift in Sources */,
