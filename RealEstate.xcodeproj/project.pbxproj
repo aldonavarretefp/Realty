@@ -19,6 +19,7 @@
 		F737B5D229526DEF0064ACCE /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F737B5D129526DEF0064ACCE /* HomeView.swift */; };
 		F737B5D429527A170064ACCE /* PropertyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F737B5D329527A170064ACCE /* PropertyView.swift */; };
 		F737B5D6295338600064ACCE /* FinanzasView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F737B5D5295338600064ACCE /* FinanzasView.swift */; };
+		F73CE0CA2B054787006F4966 /* PDFUIRepresentableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F73CE0C92B054787006F4966 /* PDFUIRepresentableView.swift */; };
 		F73D187229B6E95100F4D2D4 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = F73D187129B6E95100F4D2D4 /* FirebaseAuth */; };
 		F73D187429B6E95100F4D2D4 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = F73D187329B6E95100F4D2D4 /* FirebaseFirestore */; };
 		F73D187629B6E95100F4D2D4 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = F73D187529B6E95100F4D2D4 /* FirebaseStorage */; };
@@ -34,6 +35,7 @@
 		F7769F9F29B3B9C900B8518F /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7769F9E29B3B9C900B8518F /* RegisterView.swift */; };
 		F77C14742B03F4C500E04F22 /* PDFGenerationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F77C14732B03F4C500E04F22 /* PDFGenerationManager.swift */; };
 		F77C14772B0406FF00E04F22 /* ReportGenerationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F77C14762B0406FF00E04F22 /* ReportGenerationView.swift */; };
+		F796D8B72B0539300021F5C8 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = F796D8B62B0539300021F5C8 /* Router.swift */; };
 		F79BF92D29B036840083AF3C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F79BF92C29B036840083AF3C /* GoogleService-Info.plist */; };
 		F79BF93829B039550083AF3C /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F79BF93729B039550083AF3C /* LoginView.swift */; };
 		F7BC115029B682E300C65173 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7BC114F29B682E300C65173 /* ImagePicker.swift */; };
@@ -67,6 +69,7 @@
 		F737B5D129526DEF0064ACCE /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HomeView.swift; path = realestateapp/View/HomeView.swift; sourceTree = SOURCE_ROOT; };
 		F737B5D329527A170064ACCE /* PropertyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PropertyView.swift; path = realestateapp/View/Property/PropertyView.swift; sourceTree = SOURCE_ROOT; };
 		F737B5D5295338600064ACCE /* FinanzasView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FinanzasView.swift; path = realestateapp/View/Finanzas/FinanzasView.swift; sourceTree = SOURCE_ROOT; };
+		F73CE0C92B054787006F4966 /* PDFUIRepresentableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFUIRepresentableView.swift; sourceTree = "<group>"; };
 		F73D187729B6F20500F4D2D4 /* FetcherService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetcherService.swift; sourceTree = "<group>"; };
 		F74F1767295618B90044F7AF /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		F74F470E29565E840012CCF5 /* Tenant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tenant.swift; sourceTree = "<group>"; };
@@ -80,6 +83,7 @@
 		F7769FA029B3BB2F00B8518F /* RealEstate-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "RealEstate-Info.plist"; sourceTree = "<group>"; };
 		F77C14732B03F4C500E04F22 /* PDFGenerationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFGenerationManager.swift; sourceTree = "<group>"; };
 		F77C14762B0406FF00E04F22 /* ReportGenerationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportGenerationView.swift; sourceTree = "<group>"; };
+		F796D8B62B0539300021F5C8 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		F79BF92C29B036840083AF3C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F79BF93729B039550083AF3C /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		F7BC114F29B682E300C65173 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
@@ -153,12 +157,13 @@
 		F737B5C229526C6C0064ACCE /* realestateapp */ = {
 			isa = PBXGroup;
 			children = (
+				F796D8B52B0539250021F5C8 /* Navigation */,
 				F7A560FB2B03F48500B0839D /* Networking */,
 				F79BF92C29B036840083AF3C /* GoogleService-Info.plist */,
 				F737B5C329526C6C0064ACCE /* realestate.swift */,
 				F7DB241F29B6E5F9009040C1 /* Service */,
 				F7BC115129B686B600C65173 /* Extensions */,
-				F7BC114E29B682CF00C65173 /* Utils */,
+				F7BC114E29B682CF00C65173 /* UIRepresentables */,
 				F74F470D29565E390012CCF5 /* ViewModel */,
 				F7EE6E54295503D4006EFF35 /* Model */,
 				F7EE6E53295503CA006EFF35 /* View */,
@@ -211,6 +216,14 @@
 			path = Reports;
 			sourceTree = "<group>";
 		};
+		F796D8B52B0539250021F5C8 /* Navigation */ = {
+			isa = PBXGroup;
+			children = (
+				F796D8B62B0539300021F5C8 /* Router.swift */,
+			);
+			path = Navigation;
+			sourceTree = "<group>";
+		};
 		F7A560FB2B03F48500B0839D /* Networking */ = {
 			isa = PBXGroup;
 			children = (
@@ -227,13 +240,14 @@
 			path = Manager;
 			sourceTree = "<group>";
 		};
-		F7BC114E29B682CF00C65173 /* Utils */ = {
+		F7BC114E29B682CF00C65173 /* UIRepresentables */ = {
 			isa = PBXGroup;
 			children = (
 				F7BC114F29B682E300C65173 /* ImagePicker.swift */,
 				F7C4423C2A02ECDB00D3B934 /* DocumentPicker.swift */,
+				F73CE0C92B054787006F4966 /* PDFUIRepresentableView.swift */,
 			);
-			path = Utils;
+			path = UIRepresentables;
 			sourceTree = "<group>";
 		};
 		F7BC115129B686B600C65173 /* Extensions */ = {
@@ -413,6 +427,7 @@
 				F7C4423F2A031A0200D3B934 /* DocumentUploader.swift in Sources */,
 				F74F4711295660620012CCF5 /* LandLordUser.swift in Sources */,
 				F74F470F29565E840012CCF5 /* Tenant.swift in Sources */,
+				F796D8B72B0539300021F5C8 /* Router.swift in Sources */,
 				F7E2FD0229EC6FE2005F4717 /* EditPropertyView.swift in Sources */,
 				F7BC115029B682E300C65173 /* ImagePicker.swift in Sources */,
 				F7DB242129B6E610009040C1 /* ImageUploader.swift in Sources */,
@@ -428,6 +443,7 @@
 				F7769F9F29B3B9C900B8518F /* RegisterView.swift in Sources */,
 				F762001529F87C0B003FC0B5 /* Transaction.swift in Sources */,
 				F79BF93829B039550083AF3C /* LoginView.swift in Sources */,
+				F73CE0CA2B054787006F4966 /* PDFUIRepresentableView.swift in Sources */,
 				F737B5D6295338600064ACCE /* FinanzasView.swift in Sources */,
 				F737B5C629526C6C0064ACCE /* ContentView.swift in Sources */,
 				F7769F9D29B3B19500B8518F /* AuthViewModel.swift in Sources */,

@@ -11,7 +11,6 @@ class ReportGenerationViewModel: ObservableObject {
     enum FileType: String, Equatable, CaseIterable {
         case pdf  = "PDF"
         case excel = "Excel"
-        
         var localizedName: LocalizedStringKey { LocalizedStringKey(rawValue) }
     }
     
@@ -25,8 +24,13 @@ class ReportGenerationViewModel: ObservableObject {
     init() {}
     
     func loadPDF() {
-        if data != nil {
-            self.data = data
+        isLoading = true
+        let cacheKey = "\(startDate)_\(endDate)_\(fileTypeSelection.rawValue)"
+        if let cachedData = UserDefaults.standard.data(forKey: cacheKey) {
+            print(cachedData)
+            self.data = cachedData
+            isLoading = false
+            return
         }
         Task {
             do {
@@ -39,7 +43,7 @@ class ReportGenerationViewModel: ObservableObject {
                     "balance": 1200.00
                 ]
                 let requestBody: [String: Any] = [
-                    "landlordName": "Luigi",
+                    "landlordName": "Miami",
                     "landlordSurname": "Cirillo",
                     "landlordAddress": [
                         "addrStreet": "Leannon Divide",
@@ -53,6 +57,7 @@ class ReportGenerationViewModel: ObservableObject {
                 ]
                 let pdfData = try await PDFManager.shared.fetchPDF(from: "https://restful-pdf-api-generator.onrender.com/api/v1/generate", with: requestBody)
                 DispatchQueue.main.async {
+                    UserDefaults.standard.set(pdfData, forKey: cacheKey)
                     self.data = pdfData
                     self.isLoading = false
                 }
@@ -68,6 +73,7 @@ class ReportGenerationViewModel: ObservableObject {
 
 struct ReportGenerationView: View {
     @StateObject var vm: ReportGenerationViewModel = ReportGenerationViewModel()
+    @EnvironmentObject var router: Router
     
     var body: some View {
         VStack {
@@ -105,43 +111,7 @@ struct ReportGenerationView: View {
             Spacer()
             if !vm.isLoading {
                 Button(action: {
-                    vm.isLoading = true
-                    Task {
-                        do {
-                            let transaction: [String: Any] = [
-                                "date": "2023-01-01",
-                                "description": "January Rent",
-                                "category": "Rental Income",
-                                "income": 1200.00,
-                                "expense": 0.00,
-                                "balance": 1200.00
-                            ]
-                            let requestBody: [String: Any] = [
-                                "landlordName": "Luigi",
-                                "landlordSurname": "Cirillo",
-                                "landlordAddress": [
-                                    "addrStreet": "Leannon Divide",
-                                    "addrCity": "Kansasdfasdfsaas",
-                                    "addrState": "Port Russ",
-                                    "addrPostalCode": "01adsfas184"
-                                ],
-                                "landlordTransactions": [
-                                    transaction
-                                ]
-                            ]
-                            
-                            let pdfData = try await PDFManager.shared.fetchPDF(from: "https://restful-pdf-api-generator.onrender.com/api/v1/generate", with: requestBody)
-                            
-                            print("Succesfully fetched PDF.")
-                            vm.data = pdfData
-                            
-                            // Handle the received PDF data, such as saving to a file or displaying
-                        } catch let error {
-                            print(error.localizedDescription)
-                        }
-                        vm.isActive = true
-                        vm.isLoading = false
-                    }
+                    router.navigate(to: .pdfReportView)
                 }, label: {
                     Text("Generate")
                         .bold()
@@ -154,34 +124,6 @@ struct ReportGenerationView: View {
                 .background(.blue)
                 .clipShape(RoundedRectangle(cornerRadius: 25))
                 .bold()
-                .navigationDestination(isPresented: $vm.isActive) {
-                    if let data = vm.data, let url = savePDFToFile(data: data) {
-                        PDFView(data: vm.data!)
-                            .environmentObject(vm)
-                            .navigationTitle("Your statement")
-                            .navigationBarBackButtonHidden(true)
-                            .navigationBarTitleDisplayMode(.inline)
-                            .toolbar {
-                                ToolbarItem(placement: .navigationBarLeading) {
-                                    Button {
-                                        
-                                    } label: {
-                                        Image(systemName: "chevron.backward")
-                                    }
-                                }
-                                
-                                ToolbarItem(placement: .confirmationAction) {
-                                    
-                                    ShareLink(item: url)
-                                    
-                                    
-                                }
-                            }
-                            .onAppear(perform: {
-                                vm.loadPDF()
-                            })
-                    }
-                }
             } else {
                 ZStack {
                     ProgressView()
@@ -193,25 +135,21 @@ struct ReportGenerationView: View {
                 .background(.blue)
                 .clipShape(RoundedRectangle(cornerRadius: 25))
             }
-            
-            
-            
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
         .padding()
         .navigationTitle("Statement")
-        
-    }
-    func savePDFToFile(data: Data) -> URL? {
-        let temporaryDirectoryURL = FileManager.default.temporaryDirectory
-        let pdfFileName = temporaryDirectoryURL.appendingPathComponent("report.pdf")
-        do {
-            try data.write(to: pdfFileName)
-            return pdfFileName
-        } catch {
-            print(error.localizedDescription)
-            return nil
+        .navigationBarBackButtonHidden()
+        .toolbar {
+            ToolbarItem(placement: .topBarLeading) {
+                Button(action: {
+                    router.navigateBack()
+                }, label: {
+                    Image(systemName: "chevron.left")
+                })
+            }
         }
+        
     }
 }
 

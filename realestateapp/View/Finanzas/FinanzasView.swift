@@ -12,6 +12,8 @@ struct FinanzasView: View {
     
     @EnvironmentObject private var authModel: AuthViewModel
     
+    @ObservedObject var router: Router = Router()
+    
     @State private var isSheetShowing: Bool = false
     
     @State private var transactions: [Transaction] = []
@@ -50,16 +52,13 @@ struct FinanzasView: View {
     ]
     
     var body: some View {
-        NavigationStack {
+        NavigationStack(path: $router.navPath) {
             ScrollView(showsIndicators: false) {
                 timeLapsePicker
                 if selectedTime == .custom {
                     gridDatePicker
                 }
                 ChartViewAPI()
-                NavigationLink(destination: ReportGenerationView()) {
-                    Label("Tu balance", systemImage: "doc.fill")
-                }
                 TransactionView(transactionsFilteredArr)
             }
             .onChange(of: selectedTime, perform: loadData)
@@ -75,11 +74,11 @@ struct FinanzasView: View {
                         }, label: {
                             Label("Agregar", systemImage: "plus")
                         })
-                        
-                        NavigationLink(destination: ReportGenerationView()) {
+                        Button(action: {
+                            router.navigate(to: .generateReportsView)
+                        }, label: {
                             Label("Tu balance", systemImage: "doc.fill")
-                        }
-                
+                        })
                     } label: {
                         Image(systemName: "ellipsis.circle")
                             .renderingMode(.template)
@@ -92,6 +91,14 @@ struct FinanzasView: View {
                             .foregroundStyle(.green)
                         
                     }
+                    .navigationDestination(for: Router.Destination.self) { destination in
+                        switch destination {
+                        case .generateReportsView:
+                            ReportGenerationView()
+                        case .pdfReportView:
+                            ReportPDFView()
+                        }
+                    }
                 }
                 
             }
@@ -99,6 +106,7 @@ struct FinanzasView: View {
                 NewTransactionView(transactions: $transactions)
             }
         }
+        .environmentObject(router)
         .navigationViewStyle(StackNavigationViewStyle())
     }
     
@@ -242,10 +250,6 @@ struct ChartView: View {
         }
         .frame(height: 300)
     
-        
-    }
-    
-    private func calculateTotalIncome() {
         
     }
 }
