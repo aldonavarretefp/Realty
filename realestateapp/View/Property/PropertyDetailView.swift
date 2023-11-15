@@ -10,6 +10,7 @@ import SwiftUI
 struct PropertyDetailView: View {
     
     @State var property: Property
+    @EnvironmentObject var router: Router
     
     var tenant: Tenant {
         guard let tenant = property.tenant else {
@@ -27,7 +28,10 @@ struct PropertyDetailView: View {
         GridItem(.flexible()),
         GridItem(.flexible()),
     ]
-    
+    func calculateHeight(_ geometry: GeometryProxy) -> CGFloat {
+        let offset = geometry.frame(in: .global).minY
+        return offset > 0 ? 300 + offset : 300
+    }
     var body: some View {
         ScrollView {
             propertyImgView
@@ -38,7 +42,15 @@ struct PropertyDetailView: View {
             }
             .padding()
         }
+        .navigationBarBackButtonHidden()
         .toolbar {
+            ToolbarItem(placement: .topBarLeading) {
+                Button(action: {
+                    router.navigateBack()
+                }, label: {
+                    Image(systemName: "arrow.left")
+                })
+            }
             ToolbarItem(placement: .navigationBarTrailing) {
                 NavigationLink("Editar", destination: EditPropertyView(property: $property))
                     .isDetailLink(false)
@@ -58,7 +70,7 @@ struct PropertyDetailView: View {
                 .font(.system(.largeTitle, design: .serif))
                 .font(.largeTitle)
                 .fontWeight(.bold)
-                
+            
             VStack(alignment: .leading) {
                 HStack {
                     Image("avatar 1")
@@ -117,45 +129,32 @@ extension PropertyDetailView {
     }
     
     var propertyImgView: some View {
-        ZStack(alignment: .top) {
-            TabView {
-                ForEach(1...3, id: \.self) { _ in
-                    Image(property.imgName ?? "casa 1")
-                        .resizable()
-                        .scaledToFill()
-                        .overlay(
-                            LinearGradient(gradient: Gradient(colors: [
-                                .black.opacity(0.7),
-                                .black.opacity(0.5),
-                                .clear,
-                                .black.opacity(0.6)
-                            ]),
-                                           startPoint: .top,
-                                           endPoint: .bottom)
-                        )
-                        .clipped()
+        GeometryReader { geometry in
+                TabView {
+                    ForEach(1...3, id: \.self) { _ in
+                        Image(property.imgName ?? "casa 1")
+                            .resizable()
+                            .scaledToFill()
+                            .overlay(
+                                LinearGradient(gradient: Gradient(colors: [
+                                    .black.opacity(0.7),
+                                    .black.opacity(0.5),
+                                    .clear,
+                                    .black.opacity(0.6)
+                                ]),
+                                               startPoint: .top,
+                                               endPoint: .bottom)
+                            )
+                            .clipped()
+                    }
                 }
-            }
-            .tabViewStyle(PageTabViewStyle())
-            .indexViewStyle(PageIndexViewStyle(backgroundDisplayMode: .always))
-            HStack {
-                Button(action: {
-                    
-                }, label: {
-                    Text("Back")
-                    
-                })
-                Spacer()
-                Button(action: {
-                    
-                }, label: {
-                    Text("Editar")
-                })
-            }
-            .padding(.top, 50)
-            .padding(.horizontal, 30)
+                .tabViewStyle(PageTabViewStyle())
+                .indexViewStyle(PageIndexViewStyle(backgroundDisplayMode: .always))
+                .frame(width: geometry.size.width, height: max(300, 300 + geometry.frame(in: .global).minY))
+                .offset(y: geometry.frame(in: .global).minY > 0 ? -geometry.frame(in: .global).minY : 0)
+                
         }
-        .frame(height: 230, alignment: .top)
+        .frame(height: 300) // Initial height of the image
         
     }
     
