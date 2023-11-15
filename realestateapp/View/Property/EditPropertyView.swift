@@ -15,8 +15,6 @@ struct EditPropertyView: View {
     
     @Binding var property: Property
     
-    @Binding var isHomeActive: Bool
-    
     // MARK: State vars
     @State private var isLoading: Bool = false
     @State private var isSubmitButtonDisabled: Bool = true
@@ -107,7 +105,6 @@ struct EditPropertyView: View {
     func deleteProperty() -> Void {
         isLoading = true
         authModel.deleteProperty(property: property)
-        isHomeActive = false
         presentationMode.wrappedValue.dismiss()
     }
     
@@ -120,6 +117,6 @@ struct EditPropertyView: View {
 
 struct EditPropertyView_Previews: PreviewProvider {
     static var previews: some View {
-        EditPropertyView(property: .constant(.init(title: "Nueva", address: "Propiedad")), isHomeActive: .constant(false))
+        EditPropertyView(property: .constant(.init(title: "Nueva", address: "Propiedad")))
     }
 }

@@ -30,14 +30,12 @@ struct realestate: App  {
         WindowGroup {
             ZStack {
                 LaunchScreenView()
-                NavigationView {
-                    ContentView()
-                }
+                ContentView()
                 .environmentObject(authModel)
                 .navigationViewStyle(StackNavigationViewStyle())
             }
             .environmentObject(launchScreenState)
-            .preferredColorScheme(isDark ? .dark : .light)
+            .preferredColorScheme(isDark ? .light : .dark)
         }
     }
 }

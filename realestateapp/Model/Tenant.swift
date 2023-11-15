@@ -11,9 +11,7 @@ import Foundation
 
 struct Tenant: Identifiable, Codable, Equatable {
     @DocumentID var id: String?
-    
     var name: String
-    
     var middleName: String?
     var lastName: String?
     var secondLastName: String?
@@ -24,6 +22,6 @@ struct Tenant: Identifiable, Codable, Equatable {
     var contractUrl: String?
     
     static func ==(lhs: Tenant, rhs: Tenant) -> Bool {
-        return lhs.name == rhs.name
+        return lhs.id == rhs.id
     }
 }

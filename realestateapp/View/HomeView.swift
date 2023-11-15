@@ -15,11 +15,11 @@ struct HomeView: View {
     @State private var isHomeActive: Bool = false
     
     var body: some View {
-        NavigationView {
+        NavigationStack {
             ScrollView {
                 if let properties = authModel.userProperties {
                     ForEach(properties) { prop in
-                        NavigationLink(destination: PropertyDetailView(property: prop, isHomeActive: $isHomeActive)) {
+                        NavigationLink(destination: PropertyDetailView(property: prop)) {
                             PropertyView(imgName: prop.imgName ?? "casa2", propertyTitle: prop.title, propertyAddr: prop.address)
                         }
                         .padding(.bottom, 10)
@@ -27,7 +27,7 @@ struct HomeView: View {
                 }
             }
             .navigationTitle("Tus propiedades")
-            .toolbar{
+            .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Menu {
                         Button(action: {
@@ -80,7 +80,16 @@ struct HomeView: View {
 
 struct Previews_HomeView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeView()
-            .environmentObject(AuthViewModel())
+        Group {
+            HomeView()
+                .environmentObject(AuthViewModel())
+                .preferredColorScheme(.dark)
+                .previewDisplayName("Dark Mode")
+            HomeView()
+                .environmentObject(AuthViewModel())
+                .preferredColorScheme(.light)
+                .previewDisplayName("Light Mode")
+        }
+        
     }
 }

@@ -34,14 +34,12 @@ struct TransactionViewRow: View {
             Text("name")
                 .font(.subheadline)
                 .fontWeight(.bold)
-                .foregroundColor(Color("primary"))
                 .lineLimit(2)
                 .frame(width: 100, alignment: .center)
             VStack {
                 Text("\(transaction.date.getMonthLocalizedString.capitalized)")
                     .font(.subheadline)
                     .bold()
-                    .foregroundColor(Color("primary"))
                 Text("\(transaction.date.get(.day))")
                     .font(.headline)
                     .bold()
@@ -59,7 +57,6 @@ struct TransactionViewRow: View {
             minHeight: 60,
             maxHeight: 90
         )
-        .background(Color("primaryInvert"))
         .cornerRadius(10)
         .shadow(color: Color(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.5)), radius:8, x:2, y:5)
     }

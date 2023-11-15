@@ -48,7 +48,6 @@ struct SettingsView: View {
                             Text(user.name)
                                 .font(.title)
                                 .padding(.horizontal, 50)
-                                .foregroundColor(Color("primary"))
                         }
                         .listRowInsets(.init())
                         .cornerRadius(15)
@@ -73,7 +72,7 @@ struct SettingsView: View {
                             // Any view other than Text would be ignored
                             TextField("TextField", text: .constant("Inserte un nombre"))
                         })
-                        .foregroundColor(Color("primary"))
+                    
                     }
                     
                     Section("Apariencia") {

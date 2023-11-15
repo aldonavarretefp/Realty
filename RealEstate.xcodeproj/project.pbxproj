@@ -30,9 +30,10 @@
 		F756455F2AFAD84600722688 /* ChartViewAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = F756455E2AFAD7B700722688 /* ChartViewAPI.swift */; };
 		F762001329F83A39003FC0B5 /* NewTenantView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F762001229F83A39003FC0B5 /* NewTenantView.swift */; };
 		F762001529F87C0B003FC0B5 /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = F762001429F87C0B003FC0B5 /* Transaction.swift */; };
-		F774DDE029F8CAD400824389 /* TenantRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F774DDDF29F8CAD400824389 /* TenantRowView.swift */; };
 		F7769F9D29B3B19500B8518F /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7769F9C29B3B19500B8518F /* AuthViewModel.swift */; };
 		F7769F9F29B3B9C900B8518F /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7769F9E29B3B9C900B8518F /* RegisterView.swift */; };
+		F77C14742B03F4C500E04F22 /* PDFGenerationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F77C14732B03F4C500E04F22 /* PDFGenerationManager.swift */; };
+		F77C14772B0406FF00E04F22 /* ReportGenerationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F77C14762B0406FF00E04F22 /* ReportGenerationView.swift */; };
 		F79BF92D29B036840083AF3C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F79BF92C29B036840083AF3C /* GoogleService-Info.plist */; };
 		F79BF93829B039550083AF3C /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F79BF93729B039550083AF3C /* LoginView.swift */; };
 		F7BC115029B682E300C65173 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7BC114F29B682E300C65173 /* ImagePicker.swift */; };
@@ -42,6 +43,7 @@
 		F7D8DAA1295640070096A811 /* ContractView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7D8DAA0295640070096A811 /* ContractView.swift */; };
 		F7D983C029BA836300C334FC /* SelectProfilePhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7D983BF29BA836300C334FC /* SelectProfilePhotoView.swift */; };
 		F7DB242129B6E610009040C1 /* ImageUploader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7DB242029B6E610009040C1 /* ImageUploader.swift */; };
+		F7E1A3B62B04135200308D92 /* ReportPDFView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7E1A3B52B04135200308D92 /* ReportPDFView.swift */; };
 		F7E2AAB029E5CBD0006FD55F /* LaunchScreenStateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7E2AAAF29E5CBD0006FD55F /* LaunchScreenStateManager.swift */; };
 		F7E2AAB229E5CC98006FD55F /* LaunchScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7E2AAB129E5CC98006FD55F /* LaunchScreenView.swift */; };
 		F7E2FD0229EC6FE2005F4717 /* EditPropertyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7E2FD0129EC6FE2005F4717 /* EditPropertyView.swift */; };
@@ -73,10 +75,11 @@
 		F756455E2AFAD7B700722688 /* ChartViewAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartViewAPI.swift; sourceTree = "<group>"; };
 		F762001229F83A39003FC0B5 /* NewTenantView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTenantView.swift; sourceTree = "<group>"; };
 		F762001429F87C0B003FC0B5 /* Transaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transaction.swift; sourceTree = "<group>"; };
-		F774DDDF29F8CAD400824389 /* TenantRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TenantRowView.swift; sourceTree = "<group>"; };
 		F7769F9C29B3B19500B8518F /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
 		F7769F9E29B3B9C900B8518F /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
 		F7769FA029B3BB2F00B8518F /* RealEstate-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "RealEstate-Info.plist"; sourceTree = "<group>"; };
+		F77C14732B03F4C500E04F22 /* PDFGenerationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFGenerationManager.swift; sourceTree = "<group>"; };
+		F77C14762B0406FF00E04F22 /* ReportGenerationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportGenerationView.swift; sourceTree = "<group>"; };
 		F79BF92C29B036840083AF3C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F79BF93729B039550083AF3C /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		F7BC114F29B682E300C65173 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
@@ -86,6 +89,7 @@
 		F7D8DAA0295640070096A811 /* ContractView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContractView.swift; sourceTree = "<group>"; };
 		F7D983BF29BA836300C334FC /* SelectProfilePhotoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectProfilePhotoView.swift; sourceTree = "<group>"; };
 		F7DB242029B6E610009040C1 /* ImageUploader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageUploader.swift; sourceTree = "<group>"; };
+		F7E1A3B52B04135200308D92 /* ReportPDFView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportPDFView.swift; sourceTree = "<group>"; };
 		F7E2AAAF29E5CBD0006FD55F /* LaunchScreenStateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreenStateManager.swift; sourceTree = "<group>"; };
 		F7E2AAB129E5CC98006FD55F /* LaunchScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreenView.swift; sourceTree = "<group>"; };
 		F7E2FD0129EC6FE2005F4717 /* EditPropertyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPropertyView.swift; sourceTree = "<group>"; };
@@ -149,6 +153,7 @@
 		F737B5C229526C6C0064ACCE /* realestateapp */ = {
 			isa = PBXGroup;
 			children = (
+				F7A560FB2B03F48500B0839D /* Networking */,
 				F79BF92C29B036840083AF3C /* GoogleService-Info.plist */,
 				F737B5C329526C6C0064ACCE /* realestate.swift */,
 				F7DB241F29B6E5F9009040C1 /* Service */,
@@ -184,7 +189,6 @@
 			isa = PBXGroup;
 			children = (
 				F762001229F83A39003FC0B5 /* NewTenantView.swift */,
-				F774DDDF29F8CAD400824389 /* TenantRowView.swift */,
 				F72123BB295387BE00F1EE26 /* ExpandedTenantView.swift */,
 			);
 			path = Tenant;
@@ -196,6 +200,31 @@
 				F7769F9C29B3B19500B8518F /* AuthViewModel.swift */,
 			);
 			path = Auth;
+			sourceTree = "<group>";
+		};
+		F77C14752B0406D700E04F22 /* Reports */ = {
+			isa = PBXGroup;
+			children = (
+				F77C14762B0406FF00E04F22 /* ReportGenerationView.swift */,
+				F7E1A3B52B04135200308D92 /* ReportPDFView.swift */,
+			);
+			path = Reports;
+			sourceTree = "<group>";
+		};
+		F7A560FB2B03F48500B0839D /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				F7A560FC2B03F48A00B0839D /* Manager */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		F7A560FC2B03F48A00B0839D /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				F77C14732B03F4C500E04F22 /* PDFGenerationManager.swift */,
+			);
+			path = Manager;
 			sourceTree = "<group>";
 		};
 		F7BC114E29B682CF00C65173 /* Utils */ = {
@@ -221,7 +250,6 @@
 		F7D8DA9D29563EFC0096A811 /* Data */ = {
 			isa = PBXGroup;
 			children = (
-				F712718B296743C1007FDCB2 /* pr-sample-contract.pdf */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -269,6 +297,7 @@
 		F7EE6E53295503CA006EFF35 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				F77C14752B0406D700E04F22 /* Reports */,
 				F756455E2AFAD7B700722688 /* ChartViewAPI.swift */,
 				F762001129F83A28003FC0B5 /* Tenant */,
 				F737B5C529526C6C0064ACCE /* ContentView.swift */,
@@ -279,6 +308,7 @@
 				F7ECA33B29E8A8B700191C9D /* Property */,
 				F74F1767295618B90044F7AF /* SettingsView.swift */,
 				F7D8DAA0295640070096A811 /* ContractView.swift */,
+				F712718B296743C1007FDCB2 /* pr-sample-contract.pdf */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -387,18 +417,21 @@
 				F7BC115029B682E300C65173 /* ImagePicker.swift in Sources */,
 				F7DB242129B6E610009040C1 /* ImageUploader.swift in Sources */,
 				F737B5D229526DEF0064ACCE /* HomeView.swift in Sources */,
+				F77C14772B0406FF00E04F22 /* ReportGenerationView.swift in Sources */,
 				F7D8DAA1295640070096A811 /* ContractView.swift in Sources */,
 				F7BC115329B686CB00C65173 /* View.swift in Sources */,
 				F74F1768295618B90044F7AF /* SettingsView.swift in Sources */,
 				F74F4713295661750012CCF5 /* Property.swift in Sources */,
 				F7C4423D2A02ECDB00D3B934 /* DocumentPicker.swift in Sources */,
 				F737B5D429527A170064ACCE /* PropertyView.swift in Sources */,
+				F7E1A3B62B04135200308D92 /* ReportPDFView.swift in Sources */,
 				F7769F9F29B3B9C900B8518F /* RegisterView.swift in Sources */,
 				F762001529F87C0B003FC0B5 /* Transaction.swift in Sources */,
 				F79BF93829B039550083AF3C /* LoginView.swift in Sources */,
 				F737B5D6295338600064ACCE /* FinanzasView.swift in Sources */,
 				F737B5C629526C6C0064ACCE /* ContentView.swift in Sources */,
 				F7769F9D29B3B19500B8518F /* AuthViewModel.swift in Sources */,
+				F77C14742B03F4C500E04F22 /* PDFGenerationManager.swift in Sources */,
 				F73D187829B6F20500F4D2D4 /* FetcherService.swift in Sources */,
 				F7E2FD0A29EDBE36005F4717 /* Calendar.swift in Sources */,
 				F737B5C429526C6C0064ACCE /* realestate.swift in Sources */,
@@ -409,7 +442,6 @@
 				F7D983C029BA836300C334FC /* SelectProfilePhotoView.swift in Sources */,
 				F72123BC295387BE00F1EE26 /* ExpandedTenantView.swift in Sources */,
 				F7FFDFB62A098CB30065B44A /* NewTransactionView.swift in Sources */,
-				F774DDE029F8CAD400824389 /* TenantRowView.swift in Sources */,
 				F7E2AAB229E5CC98006FD55F /* LaunchScreenView.swift in Sources */,
 				F7E2FD0829EDA780005F4717 /* Double.swift in Sources */,
 			);

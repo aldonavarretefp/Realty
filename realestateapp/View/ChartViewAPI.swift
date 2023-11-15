@@ -38,6 +38,7 @@ struct ChartViewAPI: View {
     @State private var isLineGraph: Bool = false
     
     @State private var plotWidth: CGFloat = 0.0
+    
     var body: some View {
         VStack {
             VStack(alignment: .leading, spacing: 12) {
@@ -68,7 +69,6 @@ struct ChartViewAPI: View {
                 let totalValue = sampleData.reduce(0.0) { partialResult, item in
                     item.income + partialResult
                 }
-                
                 Text(totalValue.stringFormat)
                     .font(.largeTitle)
                     .fontWeight(.semibold)
@@ -77,10 +77,8 @@ struct ChartViewAPI: View {
             .padding()
             .background(
                 RoundedRectangle(cornerRadius: 10)
-                    .fill(.white.shadow(.drop(radius: 2)))
+                    .fill(.secondary.opacity(0.1).shadow(.drop(radius: 50)))
             )
-            
-            
         }
         .padding()
         
@@ -129,7 +127,7 @@ struct ChartViewAPI: View {
                                 .background(
                                     RoundedRectangle(cornerRadius: 6, style: .continuous)
                                         .fill(
-                                            .white.shadow(.drop(radius: 2))
+                                            .secondary.opacity(0.1).shadow(.drop(radius: 10))
                                         )
                                 )
                             }
@@ -180,7 +178,15 @@ struct ChartViewAPI: View {
 
 #Preview {
     var modelData = ModelData()
-    return ChartViewAPI(sampleData: modelData.sampleData)
+    return Group {
+        ChartViewAPI(sampleData: modelData.sampleData)
+            .preferredColorScheme(.dark)
+            .previewLayout(.sizeThatFits)
+        ChartViewAPI(sampleData: modelData.sampleData)
+            .preferredColorScheme(.light)
+            .previewLayout(.sizeThatFits)
+    }
+    
     // Sample data for previews
     class ModelData: ObservableObject {
         @Published var sampleData: [Transaction] = {

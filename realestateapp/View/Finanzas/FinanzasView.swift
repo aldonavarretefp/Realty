@@ -50,20 +50,16 @@ struct FinanzasView: View {
     ]
     
     var body: some View {
-        NavigationView {
+        NavigationStack {
             ScrollView(showsIndicators: false) {
                 timeLapsePicker
                 if selectedTime == .custom {
                     gridDatePicker
                 }
-//                if !transactionsFilteredArr.isEmpty {
-//                    earningChartTitle
-//                    earningChartNumber
-//                    ChartViewAPI()
-//                    earningChart
-//                ChartView(data: transactionsFilteredArr, chartUnitXAxis: $chartUnitXAxis)
-//                }
                 ChartViewAPI()
+                NavigationLink(destination: ReportGenerationView()) {
+                    Label("Tu balance", systemImage: "doc.fill")
+                }
                 TransactionView(transactionsFilteredArr)
             }
             .onChange(of: selectedTime, perform: loadData)
@@ -73,17 +69,35 @@ struct FinanzasView: View {
             .navigationBarTitle("Tus finanzas")
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    Button(action: {
-                        isSheetShowing.toggle()
-                    }, label: {
-                        Image(systemName: "plus")
-                    })
+                    Menu {
+                        Button(action: {
+                            isSheetShowing.toggle()
+                        }, label: {
+                            Label("Agregar", systemImage: "plus")
+                        })
+                        
+                        NavigationLink(destination: ReportGenerationView()) {
+                            Label("Tu balance", systemImage: "doc.fill")
+                        }
+                
+                    } label: {
+                        Image(systemName: "ellipsis.circle")
+                            .renderingMode(.template)
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 20)
+                            .padding(1)
+                            .background(.green.opacity(0.1))
+                            .clipShape(Circle())
+                            .foregroundStyle(.green)
+                        
+                    }
                 }
+                
             }
             .sheet(isPresented: $isSheetShowing) {
                 NewTransactionView(transactions: $transactions)
             }
-            .background(Color("FinanceBackground"))
         }
         .navigationViewStyle(StackNavigationViewStyle())
     }
@@ -242,18 +256,10 @@ struct Previews_FinanzasView_Previews: PreviewProvider {
         Group {
             FinanzasView()
                 .environmentObject(AuthViewModel())
-//            ChartView(data: [
-//                .init(date: .now, income: 1000, tenantId: ""),
-//                .init(date: .now, income: 1000, tenantId: ""),
-//                .init(date: .now, income: 1000, tenantId: ""),
-//                .init(date: .now, income: 1000, tenantId: ""),
-//                .init(date: .now, income: 10, tenantId: ""),
-//
-//            ], chartUnitXAxis: .constant(.year))
-//            .frame(height: 300)
-//            .padding()
-//            .background(.gray)
-//            .clipShape(RoundedRectangle(cornerRadius: 10.0))
+                .preferredColorScheme(.light)
+            FinanzasView()
+                .environmentObject(AuthViewModel())
+                .preferredColorScheme(.dark)
         }
         
     }

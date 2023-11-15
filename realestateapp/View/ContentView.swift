@@ -20,6 +20,7 @@ struct ContentView: View {
                         .tabItem{
                             Text("Home")
                             Image(systemName: "house")
+                                
                         }
                     FinanzasView()
                         .tabItem{
@@ -42,8 +43,16 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
-            .environmentObject(AuthViewModel())
-            .environmentObject(LaunchScreenStateManager())
+        Group {
+            ContentView()
+                .environmentObject(AuthViewModel())
+                .environmentObject(LaunchScreenStateManager())
+                .preferredColorScheme(.dark)
+            ContentView()
+                .environmentObject(AuthViewModel())
+                .environmentObject(LaunchScreenStateManager())
+                .preferredColorScheme(.light)
+        }
+        
     }
 }
