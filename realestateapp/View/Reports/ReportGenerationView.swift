@@ -27,7 +27,6 @@ class ReportGenerationViewModel: ObservableObject {
     func loadPDF() {
         if data != nil {
             self.data = data
-            return
         }
         Task {
             do {
