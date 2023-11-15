@@ -11,7 +11,6 @@ class ReportGenerationViewModel: ObservableObject {
     enum FileType: String, Equatable, CaseIterable {
         case pdf  = "PDF"
         case excel = "Excel"
-        var localizedName: LocalizedStringKey { LocalizedStringKey(rawValue) }
     }
     
     @Published var fileTypeSelection: FileType = .pdf
@@ -74,39 +73,64 @@ class ReportGenerationViewModel: ObservableObject {
 struct ReportGenerationView: View {
     @StateObject var vm: ReportGenerationViewModel = ReportGenerationViewModel()
     @EnvironmentObject var router: Router
-    
+    @Namespace var selectedItemBackground
+    @ViewBuilder
+    func CustomPicker(selection: Binding<ReportGenerationViewModel.FileType>, options: [ReportGenerationViewModel.FileType]) -> some View {
+        VStack {
+            HStack {
+                ForEach(options, id: \.rawValue) { option in
+                    Text(option.rawValue)
+                        .font(.footnote)
+                        .frame(maxWidth: .infinity)
+                        .padding(8)
+                        .bold()
+                        .clipShape(Capsule())
+                        .foregroundColor(selection.wrappedValue == option ? .white : .primary)
+                        .background(selection.wrappedValue == option ?
+                                    Capsule().fill(.secondary.opacity(0.4))
+                            .matchedGeometryEffect(id: "selectedItemBackground", in: selectedItemBackground) :
+                                        nil
+                        )
+                        .onTapGesture {
+                            withAnimation(.easeInOut(duration: 0.3)) {
+                                selection.wrappedValue = option
+                            }
+                        }
+                    
+                }
+            }
+            .frame(maxWidth: .infinity)
+            .background(.secondary.opacity(0.2))
+            .clipShape(Capsule())
+        }
+        .padding(.vertical, 20)
+    }
     var body: some View {
         VStack {
-            Picker("File Selection", selection: $vm.fileTypeSelection) {
-                ForEach(ReportGenerationViewModel.FileType.allCases, id: \.rawValue) { item in
-                    Text(item.rawValue).tag(item)
-                }
-            }
-            .pickerStyle(.segmented)
-            .padding(.bottom, 20)
+            CustomPicker(selection: $vm.fileTypeSelection, options: ReportGenerationViewModel.FileType.allCases)
             HStack {
-                VStack(alignment: .center) {
-                    Text("Starting on")
-                        .padding(.bottom, 30)
-                        .foregroundStyle(.opacity(0.7))
-                    DatePicker("", selection: $vm.startDate, displayedComponents: .date)
-                        .frame(width: 120, height: 100)
+                Group {
+                    VStack(alignment: .center) {
+                        Text("Starting on")
+                            .foregroundStyle(.secondary.opacity(0.8))
+                        
+                        DatePicker("", selection: $vm.startDate, displayedComponents: .date)
+                            .frame(width: 120, height: 100)
+                    }
+                    VStack(alignment: .center) {
+                        Text("Ending on")
+                            .foregroundStyle(.secondary.opacity(0.8))
+                        DatePicker("", selection: $vm.endDate, displayedComponents: .date)
+                            .frame(width: 120, height: 100)
+                    }
                 }
-                .frame(width: 190, height: 250)
-                
-                VStack(alignment: .center) {
-                    Text("Ending on")
-                        .padding(.bottom, 30)
-                        .foregroundStyle(.opacity(0.7))
-                    DatePicker("", selection: $vm.endDate, displayedComponents: .date)
-                        .frame(width: 120, height: 100)
-                }
-                .frame(width: 190, height: 250)
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
             }
-            .frame(height: 250)
+            .frame(height: 100)
+            .padding(.vertical, 30)
             .background(
                 RoundedRectangle(cornerRadius: 10)
-                    .fill(.secondary.opacity(0.1).shadow(.drop(radius: 1)))
+                    .fill(.secondary.opacity(0.15).shadow(.drop(radius: 5)))
             )
             Spacer()
             if !vm.isLoading {
@@ -116,7 +140,6 @@ struct ReportGenerationView: View {
                     Text("Generate")
                         .bold()
                         .frame(maxWidth: .infinity)
-                    
                 })
                 .padding()
                 .foregroundStyle(.white)
@@ -160,5 +183,6 @@ struct ReportGenerationView: View {
         ReportGenerationView()
             .preferredColorScheme(.light)
     }
+    .previewLayout(.sizeThatFits)
     
 }
