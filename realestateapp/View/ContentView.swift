@@ -10,28 +10,31 @@ import SwiftUI
 struct ContentView: View {
     
     @EnvironmentObject var authModel: AuthViewModel
-    @EnvironmentObject private var launchScreenState: LaunchScreenStateManager
 
     var body: some View {
         Group {
             if authModel.userSession != nil {
-                TabView {
-                    HomeView()
-                        .tabItem{
-                            Text("Home")
-                            Image(systemName: "house")
-                                
-                        }
-                    FinanzasView()
-                        .tabItem{
-                            Text("Finanzas")
-                            Image(systemName: "chart.bar")
-                        }
-                    SettingsView()
-                        .tabItem {
-                            Text("Ajustes")
-                            Image(systemName: "gear")
-                        }
+                if let user = authModel.currentLandlord, user.userRole == .landlord {
+                    TabView {
+                        HomeView()
+                            .tabItem{
+                                Text("Home")
+                                Image(systemName: "house")
+                                    
+                            }
+                        FinanzasView()
+                            .tabItem{
+                                Text("Finanzas")
+                                Image(systemName: "chart.bar")
+                            }
+                        SettingsView()
+                            .tabItem {
+                                Text("Ajustes")
+                                Image(systemName: "gear")
+                            }
+                    }
+                } else {
+                    TenantHomeView()
                 }
             } else {
                 LoginView()
@@ -46,11 +49,9 @@ struct ContentView_Previews: PreviewProvider {
         Group {
             ContentView()
                 .environmentObject(AuthViewModel())
-                .environmentObject(LaunchScreenStateManager())
                 .preferredColorScheme(.dark)
             ContentView()
                 .environmentObject(AuthViewModel())
-                .environmentObject(LaunchScreenStateManager())
                 .preferredColorScheme(.light)
         }
         

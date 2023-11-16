@@ -14,7 +14,7 @@ import FirebaseStorage
 class AuthViewModel: ObservableObject {
     @Published var userSession: FirebaseAuth.User?
     @Published var didAuthenticateUser: Bool = false
-    @Published var currentLandlord: LandLordUser?
+    @Published var currentLandlord: User?
     @Published var userProperties: [Property]?
     @Published var userTransactions: [Transaction]?
     private var tempUserSession: FirebaseAuth.User?
@@ -43,7 +43,7 @@ class AuthViewModel: ObservableObject {
         }
     }
     
-    func register(withEmail email: String, password: String, name: String, lastName: String) {
+    func register(withEmail email: String, password: String, name: String, lastName: String, isTenant: Bool) {
         guard !email.isEmpty, !password.isEmpty else { return }
         Auth.auth().createUser(withEmail: email, password: password) { authResult, error in
             if let e = error {
@@ -57,7 +57,9 @@ class AuthViewModel: ObservableObject {
                 "email": email,
                 "name": name,
                 "lastname": lastName,
-                "uid": user.uid
+                "uid": user.uid,
+                "userRole": isTenant ? "tenant" : "landlord",
+                "profileImageUrl": ""
             ]
             Firestore.firestore().collection("users").document(user.uid)
                 .setData(data) { _ in
@@ -109,9 +111,7 @@ class AuthViewModel: ObservableObject {
             "address": property.address,
             "area": property.area,
             "noRooms": property.noRooms,
-            "name": property.title,
             "tenant": [
-                "name": property.tenant?.name
             ]
         ]) { err in
             if let err = err {
@@ -207,7 +207,6 @@ class AuthViewModel: ObservableObject {
         guard let uid = userSession?.uid else { return }
         let docRef = Firestore.firestore().collection("properties")
         docRef.addDocument(data: [
-                "name": property.title,
                 "noRooms": property.noRooms ,
                 "address": property.address,
                 "area": property.area ,

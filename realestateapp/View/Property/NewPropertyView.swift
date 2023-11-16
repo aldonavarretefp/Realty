@@ -48,7 +48,7 @@ struct NewPropertyView: View {
         
         isLoading = true
         
-        let property: Property = .init(title: name, address: address, tenant: .init(name: tenantName), area: areaDouble, noRooms: noRooms)
+        let property: Property = .init(title: name, address: address, tenant: .init(id: "", profileImageUrl: "", name: "", lastName: "", email: "", userRole: .landlord), area: areaDouble, noRooms: noRooms)
         
         await authModel.uploadProperty(property: property)
         

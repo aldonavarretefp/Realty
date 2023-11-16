@@ -30,8 +30,8 @@ struct SettingsView: View {
                             }) {
                                 HStack {
                                     Spacer()
-                                    if let profileImageUrl = user.profileImageUrl {
-                                        KFImage(URL(string: profileImageUrl))
+                                    if user.profileImageUrl != "" {
+                                        KFImage(URL(string: user.profileImageUrl))
                                             .resizable()
                                             .scaledToFill()
                                             .modifier(ProfileImageModifier())

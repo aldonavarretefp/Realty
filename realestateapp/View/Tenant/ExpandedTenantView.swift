@@ -194,6 +194,6 @@ extension View {
 
 struct Previews_ExpandedTenantView_Previews: PreviewProvider {
     static var previews: some View {
-        ExpandedTenantView(tenant: Tenant(name: "NameTenant"))
+        Text("Hello")
     }
 }

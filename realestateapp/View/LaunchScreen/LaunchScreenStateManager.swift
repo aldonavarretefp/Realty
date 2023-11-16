@@ -21,9 +21,8 @@ final class LaunchScreenStateManager: ObservableObject {
     
     @MainActor
     func dismiss() {
-        Task {
-            self.state = .secondStep
-            try? await Task.sleep(for: Duration.seconds(1))
+        self.state = .secondStep
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
             self.state = .finished
         }
     }

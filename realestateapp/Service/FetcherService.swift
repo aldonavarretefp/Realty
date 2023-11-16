@@ -13,11 +13,11 @@ enum UserServiceError: Error {
 
 struct UserService {
     
-    func fetchUser(withUid uid: String, completion: @escaping((Result<LandLordUser, UserServiceError>) -> (Void))) {
+    func fetchUser(withUid uid: String, completion: @escaping((Result<User, UserServiceError>) -> (Void))) {
         let docRef = Firestore.firestore().collection("users").document(uid)
         docRef.getDocument { (snapshot, error) in
             if let document = snapshot, document.exists {
-                guard let user = try? snapshot?.data(as: LandLordUser.self) else {
+                guard let user = try? snapshot?.data(as: User.self) else {
                     print("DEBUG could not decode user.")
                     return
                 }
@@ -67,7 +67,7 @@ struct PropertyService {
         
         collectionRef.addSnapshotListener({ snapshot, error in
             guard let snapshot = snapshot, error == nil else {
-                print("DEBUG errror listening to the database")
+                print("DEBUG error listening to the database")
                 return
             }
             

@@ -13,8 +13,7 @@ struct Property: Identifiable, Codable, Equatable {
         lhs.address == rhs.address &&
         lhs.title == rhs.title &&
         lhs.area == rhs.area &&
-        lhs.noRooms == rhs.noRooms &&
-        lhs.tenant == rhs.tenant
+        lhs.noRooms == rhs.noRooms
     }
     
     @DocumentID var id: String?

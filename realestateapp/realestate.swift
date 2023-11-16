@@ -29,10 +29,13 @@ struct realestate: App  {
     var body: some Scene {
         WindowGroup {
             ZStack {
-                LaunchScreenView()
-                ContentView()
-                .environmentObject(authModel)
-                .navigationViewStyle(StackNavigationViewStyle())
+                if launchScreenState.state != .finished {
+                    LaunchScreenView()
+                } else {
+                    ContentView()
+                    .environmentObject(authModel)
+                    .navigationViewStyle(StackNavigationViewStyle())
+                }
             }
             .environmentObject(launchScreenState)
             .preferredColorScheme(isDark ? .light : .dark)

@@ -49,12 +49,7 @@ struct Previews_ContractView_Previews: PreviewProvider {
     static var previews: some View {
         let contractURL = Bundle.main.url(forResource: "pr-sample-contract", withExtension: "pdf")!
         Group {
-            ContractView(tenant: .init(name: "José", contractUrl: contractURL.absoluteString))
-                .preferredColorScheme(.dark)
-                .previewDisplayName("Dark mode")
-            ContractView(tenant: .init(name: "José", contractUrl: contractURL.absoluteString))
-                .preferredColorScheme(.light)
-                .previewDisplayName("Light Mode")
+            Text("Hello")
         }
         .previewLayout(.sizeThatFits)
     }

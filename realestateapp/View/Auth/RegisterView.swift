@@ -13,6 +13,7 @@ struct RegisterView: View {
     @State var password: String = ""
     @State var name: String = ""
     @State var lastName: String = ""
+    @State var isTenant: Bool = false
     @EnvironmentObject var authModel:AuthViewModel
     
     var body: some View {
@@ -21,11 +22,6 @@ struct RegisterView: View {
                 .font(.largeTitle)
                 .fontWeight(.bold)
                 .frame(height: 100)
-            ZStack{
-                RoundedRectangle(cornerRadius: 14)
-                    .fill(Color(#colorLiteral(red: 0.1725490242242813, green: 0.1725490242242813, blue: 0.18039216101169586, alpha: 1)))
-                    .frame(height: 450)
-                    .shadow(color: Color(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.25)), radius:8, x:2, y:15)
                 VStack(alignment: .leading) {
                     Text("Email")
                         .foregroundColor(.white)
@@ -33,12 +29,18 @@ struct RegisterView: View {
                         .textInputAutocapitalization(.never)
                         .autocorrectionDisabled(true)
                     ZStack {
-                        RoundedRectangle(cornerRadius: 12)
-                            .fill(Color(#colorLiteral(red: 0.9490196108818054, green: 0.9490196108818054, blue: 0.9686274528503418, alpha: 1)))
                         TextField("Email", text: $email)
+                            .frame(height: 53)
                             .padding(.leading,10)
                             .textInputAutocapitalization(.never)
                             .autocorrectionDisabled(true)
+                            .background(
+                                RoundedRectangle(cornerRadius: 12)
+                                    .fill(.secondary)
+                            )
+                            
+                        
+                        
                     }
                     .frame(width: 301, height: 54)
                     .padding(.leading,5)
@@ -46,12 +48,14 @@ struct RegisterView: View {
                         .foregroundColor(.white)
                         .padding(.leading,5)
                     ZStack {
-                        RoundedRectangle(cornerRadius: 12)
-                            .fill(Color(#colorLiteral(red: 0.9490196108818054, green: 0.9490196108818054, blue: 0.9686274528503418, alpha: 1)))
-                            .frame(width: 301, height: 54)
                         SecureField("Password", text: $password)
                             .padding(.leading,10)
-                            
+                            .frame(height: 53)
+                            .background(
+                                RoundedRectangle(cornerRadius: 12)
+                                    .fill(.secondary)
+                            )
+                        
                     }
                     .frame(width: 301, height: 54)
                     .padding(.leading,5)
@@ -59,12 +63,15 @@ struct RegisterView: View {
                         .foregroundColor(.white)
                         .padding(.leading,5)
                     ZStack {
-                        RoundedRectangle(cornerRadius: 12)
-                            .fill(Color(#colorLiteral(red: 0.9490196108818054, green: 0.9490196108818054, blue: 0.9686274528503418, alpha: 1)))
-                            .frame(width: 301, height: 54)
                         TextField("Name", text: $name)
                             .padding(.leading,10)
-                            
+                            .frame(height: 53)
+                            .background(
+                                RoundedRectangle(cornerRadius: 12)
+                                    .fill(.secondary)
+                                
+                            )
+                        
                     }
                     .frame(width: 301, height: 54)
                     .padding(.leading,5)
@@ -72,22 +79,36 @@ struct RegisterView: View {
                         .foregroundColor(.white)
                         .padding(.leading,5)
                     ZStack {
-                        RoundedRectangle(cornerRadius: 12)
-                            .fill(Color(#colorLiteral(red: 0.9490196108818054, green: 0.9490196108818054, blue: 0.9686274528503418, alpha: 1)))
-                            .frame(width: 301, height: 54)
                         TextField("Last Name", text: $lastName)
                             .padding(.leading,10)
-                            
+                            .frame(height: 53)
+                            .background(
+                                RoundedRectangle(cornerRadius: 12)
+                                    .fill(.secondary)
+                                
+                            )
+                    }
+                    .frame(width: 301, height: 54)
+                    .padding(.leading,5)
+                    
+                    ZStack {
+                        Toggle("Tenant", isOn: $isTenant)
+                            .foregroundStyle(.primary)
                     }
                     .frame(width: 301, height: 54)
                     .padding(.leading,5)
                     
                 }
-                .padding(.top,-50)
-            }
-            .frame(width: 334)
+                .frame(width: 334)
+                .padding(.vertical, 30)
+                .background(
+                    RoundedRectangle(cornerRadius: 12)
+                        .fill(.primary.opacity(0.5))
+                        .shadow(color: .secondary, radius: 8, x: 2, y: 15)
+                )
+            
             Button {
-                authModel.register(withEmail: email, password: password,name: name, lastName: lastName)
+                authModel.register(withEmail: email, password: password,name: name, lastName: lastName, isTenant: isTenant)
             } label: {
                 Text("Registrar")
                     .frame(width: 334, height: 50)
@@ -96,21 +117,8 @@ struct RegisterView: View {
                     .cornerRadius(14)
                     .padding(.top,20)
             }
-            Spacer()
-            HStack {
-                Text("Ya tienes cuenta?")
-                    .font(.caption)
-                NavigationLink(destination: LoginView()) {
-                    Text("Inicia Sesión")
-                        .font(.caption)
-                        .fontWeight(.semibold)
-                        .foregroundColor(Color(.systemBlue))
-                }
-            }
-            
         }
-            .frame(width: 334)
-            .navigationBarBackButtonHidden()
+        .frame(width: 334)
     }
 }
 struct RegisterView_Previews: PreviewProvider {
@@ -118,3 +126,12 @@ struct RegisterView_Previews: PreviewProvider {
         RegisterView()
     }
 }
+/**
+ 
+ var profileImageUrl: String
+ var name: String
+ var lastName: String
+ var email: String
+ var userRole: UserRole
+ 
+ */

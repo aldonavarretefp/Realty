@@ -14,7 +14,7 @@ struct PropertyDetailView: View {
     
     var tenant: Tenant {
         guard let tenant = property.tenant else {
-            return Tenant(name: "Desconocido")
+            return Tenant(profileImageUrl: "", name: "", lastName: "", email: "", userRole: .landlord)
         }
         return tenant
     }

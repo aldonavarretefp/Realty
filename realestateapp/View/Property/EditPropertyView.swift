@@ -20,7 +20,7 @@ struct EditPropertyView: View {
     @State private var isSubmitButtonDisabled: Bool = true
     @State private var isPresentingConfirm: Bool = false
     @State private var noRooms: Int?
-    @State private var tenant: Tenant = .init(name: "")
+    @State private var tenant: Tenant = .init(id: "", profileImageUrl: "", name: "", lastName: "", email: "", userRole: .landlord)
     
     var body: some View {
         ZStack {
