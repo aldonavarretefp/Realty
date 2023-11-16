@@ -11,7 +11,7 @@ final class Router: ObservableObject {
     
     public enum Destination: Codable, Hashable {
         case generateReportsView
-        case pdfReportView
+        case pdfReportView(data: Data)
     }
     
     @Published var navPath = NavigationPath()

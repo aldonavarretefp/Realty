@@ -10,38 +10,49 @@ import SwiftUI
 struct ReportPDFView: View {
     @EnvironmentObject var router: Router
     @StateObject var vm: ReportGenerationViewModel = ReportGenerationViewModel()
+    @State var data: Data
+    
+    init(data: Data) {
+        self.data = data
+    }
     
     var body: some View {
-        
         if !vm.isLoading {
-            if let d = vm.data {
-                PDFView(data: d)
-                    .onAppear(perform: {
-                        vm.loadPDF()
-                    })
-                    .navigationTitle("Your statement")
-                    .navigationBarBackButtonHidden()
-                    .navigationBarTitleDisplayMode(.inline)
-                    .toolbar {
-                        ToolbarItem(placement: .navigationBarLeading) {
-                            Button {
-                                router.navigateBack()
-                            } label: {
-                                Image(systemName: "chevron.backward")
-                            }
-                        }
-                        if let url = savePDFToFile(data: d) {
-                            ToolbarItem(placement: .confirmationAction) {
-                                ShareLink(item: url)
-                            }
+            PDFView(data: data)
+                .onAppear(perform: {
+                    Task {
+                        if let pdfData = await vm.loadPDF() {
+                            data = pdfData
                         }
                     }
-            }
+                })
+                .navigationTitle("Your statement")
+                .navigationBarBackButtonHidden()
+                .navigationBarTitleDisplayMode(.inline)
+                .toolbar {
+                    ToolbarItem(placement: .navigationBarLeading) {
+                        Button {
+                            router.navigateBack()
+                        } label: {
+                            Image(systemName: "chevron.backward")
+                        }
+                    }
+                    if let url = savePDFToFile(data: data) {
+                        ToolbarItem(placement: .confirmationAction) {
+                            ShareLink(item: url)
+                        }
+                    }
+                }
+            
         } else {
             ProgressView()
                 .progressViewStyle(CircularProgressViewStyle(tint: .primary))
                 .onAppear(perform: {
-                    vm.loadPDF()
+                    Task {
+                        if let pdfData = await vm.loadPDF() {
+                            data = pdfData
+                        }
+                    }
                 })
         }
         
@@ -62,6 +73,6 @@ struct ReportPDFView: View {
 }
 
 #Preview {
-    ReportPDFView()
+    ReportPDFView(data: Data())
         .environmentObject(Router())
 }

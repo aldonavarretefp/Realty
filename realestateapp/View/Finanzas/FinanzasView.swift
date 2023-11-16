@@ -61,9 +61,13 @@ struct FinanzasView: View {
                 ChartViewAPI()
                 TransactionView(transactionsFilteredArr)
             }
+            .padding()
             .onChange(of: selectedTime, perform: loadData)
             .onChange(of: fromDate, perform: filterDataFrom)
             .onChange(of: untilDate, perform: filterDataUntil)
+            .task {
+                loadTransactions()
+            }
             .onAppear(perform: loadTransactions)
             .navigationBarTitle("Tus finanzas")
             .toolbar {
@@ -95,8 +99,8 @@ struct FinanzasView: View {
                         switch destination {
                         case .generateReportsView:
                             ReportGenerationView()
-                        case .pdfReportView:
-                            ReportPDFView()
+                        case .pdfReportView(let data):
+                            ReportPDFView(data: data)
                         }
                     }
                 }

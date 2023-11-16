@@ -19,54 +19,57 @@ class ReportGenerationViewModel: ObservableObject {
     @Published var isActive: Bool = false
     @Published var data: Data? = nil
     @Published var isLoading: Bool = false
+    @EnvironmentObject var router: Router
     
     init() {}
     
-    func loadPDF() {
+    func loadPDF() async -> Data? {
         isLoading = true
         let cacheKey = "\(startDate)_\(endDate)_\(fileTypeSelection.rawValue)"
         if let cachedData = UserDefaults.standard.data(forKey: cacheKey) {
             print(cachedData)
             self.data = cachedData
             isLoading = false
-            return
+            return nil
         }
-        Task {
-            do {
-                let transaction: [String: Any] = [
-                    "date": "2023-01-01",
-                    "description": "January Rent",
-                    "category": "Rental Income",
-                    "income": 1200.00,
-                    "expense": 0.00,
-                    "balance": 1200.00
+        
+        do {
+            let transaction: [String: Any] = [
+                "date": "2023-01-01",
+                "description": "January Rent",
+                "category": "Rental Income",
+                "income": 1200.00,
+                "expense": 0.00,
+                "balance": 1200.00
+            ]
+            let requestBody: [String: Any] = [
+                "landlordName": "Miami",
+                "landlordSurname": "Cirillo",
+                "landlordAddress": [
+                    "addrStreet": "Leannon Divide",
+                    "addrCity": "Kansasdfasdfsaas",
+                    "addrState": "Port Russ",
+                    "addrPostalCode": "01adsfas184"
+                ],
+                "landlordTransactions": [
+                    transaction
                 ]
-                let requestBody: [String: Any] = [
-                    "landlordName": "Miami",
-                    "landlordSurname": "Cirillo",
-                    "landlordAddress": [
-                        "addrStreet": "Leannon Divide",
-                        "addrCity": "Kansasdfasdfsaas",
-                        "addrState": "Port Russ",
-                        "addrPostalCode": "01adsfas184"
-                    ],
-                    "landlordTransactions": [
-                        transaction
-                    ]
-                ]
-                let pdfData = try await PDFManager.shared.fetchPDF(from: "https://restful-pdf-api-generator.onrender.com/api/v1/generate", with: requestBody)
-                DispatchQueue.main.async {
-                    UserDefaults.standard.set(pdfData, forKey: cacheKey)
-                    self.data = pdfData
-                    self.isLoading = false
-                }
-            } catch {
-                // Handle the error appropriately
-                DispatchQueue.main.async {
-                    self.isLoading = false
-                }
+            ]
+            let pdfData = try await PDFManager.shared.fetchPDF(from: "https://restful-pdf-api-generator.onrender.com/api/v1/generate", with: requestBody)
+            await MainActor.run {
+                UserDefaults.standard.set(pdfData, forKey: cacheKey)
+                self.data = pdfData
+                self.isLoading = false
             }
+            return pdfData
+        } catch {
+            // Handle the error appropriately
+            await MainActor.run {
+                self.isLoading = false
+            }
+            return nil
         }
+        
     }
 }
 
@@ -74,6 +77,7 @@ struct ReportGenerationView: View {
     @StateObject var vm: ReportGenerationViewModel = ReportGenerationViewModel()
     @EnvironmentObject var router: Router
     @Namespace var selectedItemBackground
+    
     @ViewBuilder
     func CustomPicker(selection: Binding<ReportGenerationViewModel.FileType>, options: [ReportGenerationViewModel.FileType]) -> some View {
         VStack {
@@ -103,7 +107,7 @@ struct ReportGenerationView: View {
             .background(.secondary.opacity(0.2))
             .clipShape(Capsule())
         }
-        .padding(.vertical, 20)
+        .padding(.vertical, 10)
     }
     var body: some View {
         VStack {
@@ -112,14 +116,14 @@ struct ReportGenerationView: View {
                 Group {
                     VStack(alignment: .center) {
                         Text("Starting on")
-                            .foregroundStyle(.secondary.opacity(0.8))
+                            .foregroundStyle(.secondary.opacity(0.6))
                         
                         DatePicker("", selection: $vm.startDate, displayedComponents: .date)
                             .frame(width: 120, height: 100)
                     }
                     VStack(alignment: .center) {
                         Text("Ending on")
-                            .foregroundStyle(.secondary.opacity(0.8))
+                            .foregroundStyle(.secondary.opacity(0.6))
                         DatePicker("", selection: $vm.endDate, displayedComponents: .date)
                             .frame(width: 120, height: 100)
                     }
@@ -135,7 +139,11 @@ struct ReportGenerationView: View {
             Spacer()
             if !vm.isLoading {
                 Button(action: {
-                    router.navigate(to: .pdfReportView)
+                    Task {
+                        if let pdfData = await vm.loadPDF() {
+                            router.navigate(to: .pdfReportView(data: pdfData))
+                        }
+                    }
                 }, label: {
                     Text("Generate")
                         .bold()
@@ -162,16 +170,6 @@ struct ReportGenerationView: View {
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
         .padding()
         .navigationTitle("Statement")
-        .navigationBarBackButtonHidden()
-        .toolbar {
-            ToolbarItem(placement: .topBarLeading) {
-                Button(action: {
-                    router.navigateBack()
-                }, label: {
-                    Image(systemName: "chevron.left")
-                })
-            }
-        }
         
     }
 }

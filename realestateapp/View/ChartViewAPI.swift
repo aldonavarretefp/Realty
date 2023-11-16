@@ -80,9 +80,6 @@ struct ChartViewAPI: View {
                     .fill(.secondary.opacity(0.1).shadow(.drop(radius: 50)))
             )
         }
-        .padding()
-        
-        
     }
     @ViewBuilder
     func AnimatedChart() -> some View {

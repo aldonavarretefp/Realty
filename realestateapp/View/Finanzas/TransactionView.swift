@@ -30,35 +30,49 @@ struct TransactionViewRow: View {
     let transaction: Transaction
     @State private var showSheet: Bool = false
     var body: some View {
-        HStack(spacing: 30) {
-            Text("name")
-                .font(.subheadline)
-                .fontWeight(.bold)
-                .lineLimit(2)
-                .frame(width: 100, alignment: .center)
-            VStack {
-                Text("\(transaction.date.getMonthLocalizedString.capitalized)")
-                    .font(.subheadline)
-                    .bold()
-                Text("\(transaction.date.get(.day))")
-                    .font(.headline)
-                    .bold()
-                    .foregroundColor(.blue)
+        HStack {
+            Image(systemName: "lightbulb.min")
+                .resizable()
+                .padding()
+                .scaledToFill()
+                .frame(width: 60, height: 60)
+                .foregroundStyle(.black.opacity(0.8))
+                .background(.secondary.opacity(0.3))
+                .clipShape(Circle())
+            
+            Group {
+                VStack(alignment: .leading) {
+                    Text("Costco Gas")
+                        .bold()
+                    Spacer()
+                    Text("Gas & Fuel")
+                        .foregroundStyle(.secondary)
+                }
+                
+                VStack(alignment: .trailing) {
+                    Text("+\(transaction.income, specifier: "%.2f")")
+                        .fontWeight(.bold)
+                        .foregroundColor(.green)
+                    Spacer()
+                    Text("Nov 29, 2021")
+                        .foregroundStyle(.secondary)
+                }
+                .frame(maxHeight: .infinity, alignment: .trailing)
+                .padding(.leading, 30)
             }
-            .frame(width: 50, alignment: .center)
-            Text("+\(transaction.income, specifier: "%.2f")")
-                .font(.callout)
-                .fontWeight(.bold)
-                .foregroundColor(Color(#colorLiteral(red: 0.2, green: 0.78, blue: 0.35, alpha: 1)))
-                .frame(width: 100, alignment: .center)
+            .frame(maxWidth: 150)
+            .font(.subheadline)
+            .padding(.vertical, 10)
+
+            
+            
         }
         .frame(
-            maxWidth: 320,
-            minHeight: 60,
-            maxHeight: 90
+            maxWidth: .infinity
         )
-        .cornerRadius(10)
-        .shadow(color: Color(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.5)), radius:8, x:2, y:5)
+        .padding()
+        .background(.secondary.opacity(0.1))
+        .clipShape(RoundedRectangle(cornerRadius: 25))
     }
     
 }
