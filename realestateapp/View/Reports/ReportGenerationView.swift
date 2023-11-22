@@ -100,6 +100,8 @@ struct ReportGenerationView: View {
                                 selection.wrappedValue = option
                             }
                         }
+                        .accessibilityLabel(Text("Select \(option.rawValue)"))
+                        .accessibilityHint(Text("Taps to select \(option.rawValue) file type"))
                     
                 }
             }
@@ -112,6 +114,7 @@ struct ReportGenerationView: View {
     var body: some View {
         VStack {
             CustomPicker(selection: $vm.fileTypeSelection, options: ReportGenerationViewModel.FileType.allCases)
+                .accessibilityLabel(Text("File type picker"))
             HStack {
                 Group {
                     VStack(alignment: .center) {

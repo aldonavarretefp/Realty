@@ -19,6 +19,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 struct realestate: App  {
     
     @AppStorage("isDarkMode") private var isDark = false
+    @Environment(\.colorScheme) var colorScheme
     
     @StateObject var authModel: AuthViewModel = AuthViewModel()
     
@@ -35,10 +36,12 @@ struct realestate: App  {
                     ContentView()
                     .environmentObject(authModel)
                     .navigationViewStyle(StackNavigationViewStyle())
+                    .preferredColorScheme(colorScheme == .light ? .light : .dark)
                 }
             }
             .environmentObject(launchScreenState)
-            .preferredColorScheme(isDark ? .light : .dark)
+            
         }
+        
     }
 }
